@@ -9,13 +9,13 @@ You need to install Mozilla Firefox web browser to be able to use this tool, dow
 
 # Tutorial on how to use it:
 
-- Separate every key with commas ",".
+- Separate every key with commas ","
 
 - Separate every timer with commas ","
 
-- Click the "Save Key(s)" button to save your current keys.
+- Click the "Save Key(s)" button to save your current keys
 
-- To Start/Stop the Mini Ftool loop, press the "Start/Stop" button.
+- To Start/Stop the Mini Ftool loop, press the "Start/Stop" button
 
 **Here is an example of configuration:**
 
