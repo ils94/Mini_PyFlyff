@@ -33,6 +33,6 @@ You can start/stop the Mini Ftool loop by
 clicking the button to Start/Stop it, or
 you can setup a shortcut to start/stop it.
 
-Here is a image of a valid Mini yFlyff Configuration:
+Here is a image of an valid Mini yFlyff Configuration:
 
 ![enter image description here](https://i.imgur.com/MLEubSM.png)
