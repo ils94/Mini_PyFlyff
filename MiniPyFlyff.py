@@ -19,12 +19,14 @@ def save_mini_ftool_key():
     globalVariables.mini_ftool_keys = entry_mini_ftool_key.get().split(",")
     globalVariables.mini_ftool_key_timers = entry_mini_ftool_timers.get().split(",")
 
-    saveConfigs.save_config(entry_alt_control_keys.get(), entry_mini_ftool_key.get(), entry_mini_ftool_timers.get())
+    saveConfigs.save_config(entry_alt_control_keys.get(), entry_mini_ftool_key.get(), entry_mini_ftool_timers.get(),
+                            checkbox_var.get())
 
 
 def save_keys():
     globalVariables.alt_control_key_list = entry_alt_control_keys.get().split(",")
-    saveConfigs.save_config(entry_alt_control_keys.get(), entry_mini_ftool_key.get(), entry_mini_ftool_timers.get())
+    saveConfigs.save_config(entry_alt_control_keys.get(), entry_mini_ftool_key.get(), entry_mini_ftool_timers.get(),
+                            checkbox_var.get())
 
 
 def validate_input_timers(char):
@@ -124,6 +126,8 @@ entry_mini_ftool_key.config(validatecommand=(validation_keys, "%S"))
 
 entry_mini_ftool_timers.config(validate="key")
 entry_mini_ftool_timers.config(validatecommand=(validation_timers, "%S"))
+
+checkbox_var.set(int(saveConfigs.open_config()[3]))
 
 miscs.multithreading(keyboardListener.listener)
 
