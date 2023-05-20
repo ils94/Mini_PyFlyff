@@ -26,4 +26,4 @@ def open_config():
 
             return value1, value2, value3
     else:
-        print("no file")
+        return "", "", ""

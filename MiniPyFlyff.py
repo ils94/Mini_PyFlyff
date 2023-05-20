@@ -116,13 +116,13 @@ entry_alt_control_keys.insert(END, saveConfigs.open_config()[0])
 entry_mini_ftool_key.insert(END, saveConfigs.open_config()[1])
 entry_mini_ftool_timers.insert(END, saveConfigs.open_config()[2])
 
-entry_alt_control_keys.config(validate='key')
+entry_alt_control_keys.config(validate="key")
 entry_alt_control_keys.config(validatecommand=(validation_keys, "%S"))
 
-entry_mini_ftool_key.config(validate='key')
+entry_mini_ftool_key.config(validate="key")
 entry_mini_ftool_key.config(validatecommand=(validation_keys, "%S"))
 
-entry_mini_ftool_timers.config(validate='key')
+entry_mini_ftool_timers.config(validate="key")
 entry_mini_ftool_timers.config(validatecommand=(validation_timers, "%S"))
 
 miscs.multithreading(keyboardListener.listener)
