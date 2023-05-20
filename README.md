@@ -1,14 +1,15 @@
+# Direct download link:
+[Download from this link](https://github.com/ils94/Mini_PyFlyff/releases/download/release/MiniPyFlyff.zip)
+
+Last binary update: 05/20/2023
+
 # Mini PyFlyff
 A mini version of PyFlyff for Mozilla FireFox. This tool has the Alt Control feature from PyFlyff and a better Mini Ftool.
 
-# How to use it
-
-There is a tutorial in the program Menu - Help
-
+# What do I need to use this tool?
 You need to install Mozilla Firefox web browser to be able to use this tool, download it from their official site: https://www.mozilla.org/
 
 # Tutorial on how to use it:
-
 - Separate every key with commas ",".
 
 - Separate every timer with commas ",".
@@ -41,6 +42,6 @@ Checking the "Make Timers Random" checkbox, will make it so there will be a rand
 
 - A number between 0 - 10.
 
-Here is an image of the tutorial above:
+**Here is an image of the tutorial above:**
 
-[![help.png](https://i.postimg.cc/yYBnsT2R/help.png)](https://postimg.cc/Th7ncnd2)
+[![help.png](https://i.postimg.cc/vH59hPLK/help.png)](https://postimg.cc/svDvD4LP)
