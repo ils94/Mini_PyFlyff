@@ -1,44 +1,11 @@
 from tkinter import Tk, Button, Label, Entry, X, LEFT, Frame, Checkbutton, IntVar, Menu, END
 import miscs
-import globalVariables
 import keyboardListener
 import miniFtool
 import helpWindow
 import os
 import saveConfigs
-
-
-def start_stop_alt_control():
-    if globalVariables.alt_control_on:
-        globalVariables.alt_control_on = False
-        button_alt_control_start_stop["text"] = "Enable"
-    else:
-        globalVariables.alt_control_on = True
-        button_alt_control_start_stop["text"] = "Disable"
-
-
-def start_stop_mini_ftool():
-    if globalVariables.mini_ftool_on:
-        globalVariables.mini_ftool_on = False
-        button_mini_ftool_start_stop["text"] = "Start"
-    else:
-        globalVariables.mini_ftool_on = True
-        button_mini_ftool_start_stop["text"] = "Stop"
-
-
-def validate_input_timers(char):
-    if char.isdigit() or char == "," or char == ".":
-        return True
-    else:
-        return False
-
-
-def validate_input_keys(char):
-    if char.isalnum() or char == ",":
-        return True
-    else:
-        return False
-
+import toolControl
 
 root = Tk()
 
@@ -53,7 +20,9 @@ menu.add_command(label="Save Keys", command=lambda: saveConfigs.save_key_configs
                                                                                  entry_mini_ftool_timers,
                                                                                  entry_mini_ftool_shortcut,
                                                                                  checkbox_var.get(),
-                                                                                 start_stop_mini_ftool))
+                                                                                 lambda:
+                                                                                 toolControl.start_stop_mini_ftool(
+                                                                                     button_mini_ftool_start_stop)))
 
 menu_bar.add_cascade(label="Menu", menu=menu)
 
@@ -74,8 +43,8 @@ if os.path.isfile("icon/PyFlyff.ico"):
     root.iconbitmap("icon/PyFlyff.ico")
 root.resizable(False, False)
 
-validation_timers = root.register(validate_input_timers)
-validation_keys = root.register(validate_input_keys)
+validation_timers = root.register(miscs.validate_input_timers)
+validation_keys = root.register(miscs.validate_input_keys)
 
 checkbox_var = IntVar()
 
@@ -88,9 +57,9 @@ entry_alt_control_keys.pack(fill=X, padx=1, pady=1)
 frame_alt_control_save_button = Frame(root)
 frame_alt_control_save_button.pack(fill=X, padx=1, pady=1)
 
-button_alt_control_start_stop = Button(frame_alt_control_save_button, text="Enable", width=10,
-                                       command=start_stop_alt_control)
+button_alt_control_start_stop = Button(frame_alt_control_save_button, text="Enable", width=10)
 button_alt_control_start_stop.pack(side=LEFT, padx=1, pady=1)
+button_alt_control_start_stop.config(command=lambda: toolControl.start_stop_alt_control(button_alt_control_start_stop))
 
 label_mini_ftool = Label(text="Mini Ftool Key(s):")
 label_mini_ftool.pack(fill=X, padx=1, pady=1)
@@ -119,9 +88,9 @@ checkbutton_mini_ftool.pack(side=LEFT, padx=1, pady=1)
 frame_mini_ftool_buttons = Frame(root)
 frame_mini_ftool_buttons.pack(fill=X, padx=1, pady=1)
 
-button_mini_ftool_start_stop = Button(frame_mini_ftool_buttons, text="Start", width=10,
-                                      command=start_stop_mini_ftool)
+button_mini_ftool_start_stop = Button(frame_mini_ftool_buttons, text="Start", width=10)
 button_mini_ftool_start_stop.pack(side=LEFT, padx=1, pady=1)
+button_mini_ftool_start_stop.config(command=lambda: toolControl.start_stop_mini_ftool(button_mini_ftool_start_stop))
 
 entry_alt_control_keys.insert(END, saveConfigs.open_json_config()[0])
 entry_mini_ftool_key.insert(END, saveConfigs.open_json_config()[1])
