@@ -1,4 +1,6 @@
-on = False
+mini_ftool_on = False
+
+alt_control_on = False
 
 alt_control_key_list = []
 

@@ -10,4 +10,4 @@ def listener():
 
 def send_key(event):
     if event.name in globalVariables.alt_control_key_list:
-        browserControl.firefox_window(event.name)
+        browserControl.alt_control_send_keys(event.name)

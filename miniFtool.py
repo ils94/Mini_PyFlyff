@@ -8,9 +8,9 @@ from tkinter import messagebox
 def mini_ftool(check):
     while True:
         try:
-            if globalVariables.on:
+            if globalVariables.mini_ftool_on:
                 for key, timer in zip(globalVariables.mini_ftool_keys, globalVariables.mini_ftool_key_timers):
-                    browserControl.firefox_window(key)
+                    browserControl.mini_ftool_send_keys(key)
 
                     if check == 1:
                         time.sleep(random.uniform(0, float(timer)))

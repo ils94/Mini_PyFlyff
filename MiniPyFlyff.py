@@ -8,11 +8,22 @@ import os
 import saveConfigs
 
 
-def start_mini_ftool():
-    if globalVariables.on:
-        globalVariables.on = False
+def start_stop_alt_control():
+    if globalVariables.alt_control_on:
+        globalVariables.alt_control_on = False
+        button_alt_control_start_stop["text"] = "Enable"
     else:
-        globalVariables.on = True
+        globalVariables.alt_control_on = True
+        button_alt_control_start_stop["text"] = "Disable"
+
+
+def start_stop_mini_ftool():
+    if globalVariables.mini_ftool_on:
+        globalVariables.mini_ftool_on = False
+        button_mini_ftool_start_stop["text"] = "Start"
+    else:
+        globalVariables.mini_ftool_on = True
+        button_mini_ftool_start_stop["text"] = "Stop"
 
 
 def save_mini_ftool_key():
@@ -84,8 +95,12 @@ entry_alt_control_keys.pack(fill=X, padx=1, pady=1)
 frame_alt_control_save_button = Frame(root)
 frame_alt_control_save_button.pack(fill=X, padx=1, pady=1)
 
-button_alt_control_save = Button(frame_alt_control_save_button, text="Save key(s)", command=save_keys)
+button_alt_control_save = Button(frame_alt_control_save_button, text="Save key(s)", width=10, command=save_keys)
 button_alt_control_save.pack(side=LEFT, padx=1, pady=1)
+
+button_alt_control_start_stop = Button(frame_alt_control_save_button, text="Enable", width=10,
+                                       command=start_stop_alt_control)
+button_alt_control_start_stop.pack(side=RIGHT, padx=1, pady=1)
 
 label_mini_ftool = Label(text="Mini Ftool Key(s):")
 label_mini_ftool.pack(fill=X, padx=1, pady=1)
@@ -108,10 +123,11 @@ checkbutton_mini_ftool.pack(side=LEFT, padx=1, pady=1)
 frame_mini_ftool_buttons = Frame(root)
 frame_mini_ftool_buttons.pack(fill=X, padx=1, pady=1)
 
-button_mini_ftool_save = Button(frame_mini_ftool_buttons, text="Save Key(s)", command=save_mini_ftool_key)
+button_mini_ftool_save = Button(frame_mini_ftool_buttons, text="Save Key(s)", width=10, command=save_mini_ftool_key)
 button_mini_ftool_save.pack(side=LEFT, padx=1, pady=1)
 
-button_mini_ftool_start_stop = Button(frame_mini_ftool_buttons, text="Start/Stop", command=start_mini_ftool)
+button_mini_ftool_start_stop = Button(frame_mini_ftool_buttons, text="Start", width=10,
+                                      command=start_stop_mini_ftool)
 button_mini_ftool_start_stop.pack(side=RIGHT, padx=1, pady=1)
 
 entry_alt_control_keys.insert(END, saveConfigs.open_config()[0])
