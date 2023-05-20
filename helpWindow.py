@@ -3,8 +3,8 @@ import os
 
 text = """How to use this tool:
 
-•Separate every key with commas '',''
-•Separate every timer with commas '',''
+•Separate every key with commas ","
+•Separate every timer with commas ","
 
 You can enable/disable Alt Control keys by clicking the button to 
 enable/disable it.
