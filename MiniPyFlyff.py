@@ -1,85 +1,24 @@
 from tkinter import Tk, Button, Label, Entry, X, LEFT, RIGHT, Frame, Checkbutton, IntVar
-import keyboard
-import threading
-import win32api
-import win32con
-import win32gui
-import virtualKeys
-import time
-import random
-
-on = False
-
-alt_control_key_list = []
-
-mini_ftool_keys = []
-
-mini_ftool_key_timers = []
-
-
-def multithreading(function):
-    t = threading.Thread(target=function)
-    t.setDaemon(True)
-    t.start()
+import miscs
+import globalVariables
+import keyboardListener
+import miniFtool
 
 
 def start_mini_ftool():
-    global on
-
-    if on:
-        on = False
+    if globalVariables.on:
+        globalVariables.on = False
     else:
-        on = True
+        globalVariables.on = True
 
 
 def save_mini_ftool_key():
-    global mini_ftool_keys
-    global mini_ftool_key_timers
-
-    mini_ftool_keys = entry_mini_ftool_key.get().split(",")
-    mini_ftool_key_timers = entry_mini_ftool_timers.get().split(",")
-
-
-def mini_ftool():
-    global on
-    global mini_ftool_keys
-    global mini_ftool_key_timers
-
-    while True:
-        if on:
-            for key, timer in zip(mini_ftool_keys, mini_ftool_key_timers):
-                if on:
-                    firefox_window(key)
-
-                    if checkbox_var.get() == 1:
-                        time.sleep(random.uniform(0, float(timer)))
-                    else:
-                        time.sleep(int(timer))
-
-        time.sleep(1)
+    globalVariables.mini_ftool_keys = entry_mini_ftool_key.get().split(",")
+    globalVariables.mini_ftool_key_timers = entry_mini_ftool_timers.get().split(",")
 
 
 def save_keys():
-    global alt_control_key_list
-    alt_control_key_list = entry_alt_control_keys.get().split(",")
-
-
-def listener():
-    keyboard.on_press(send_key)
-    keyboard.wait()
-
-
-def firefox_window(key):
-    window = win32gui.FindWindow("MozillaWindowClass", None)
-    win32api.SendMessage(window, win32con.WM_KEYDOWN, virtualKeys.vk_code.get(key), 0)
-    time.sleep(0.1)
-    win32api.SendMessage(window, win32con.WM_KEYUP, virtualKeys.vk_code.get(key), 0)
-
-
-def send_key(event):
-    print(event.name)
-    if event.name in alt_control_key_list:
-        firefox_window(event.name)
+    globalVariables.alt_control_key_list = entry_alt_control_keys.get().split(",")
 
 
 root = Tk()
@@ -128,8 +67,8 @@ button_mini_ftool_save.pack(side=LEFT, padx=1, pady=1)
 button_mini_ftool_start_stop = Button(frame_mini_ftool_buttons, text="Start/Stop", command=start_mini_ftool)
 button_mini_ftool_start_stop.pack(side=RIGHT, padx=1, pady=1)
 
-multithreading(listener)
+miscs.multithreading(keyboardListener.listener)
 
-multithreading(mini_ftool)
+miscs.multithreading(lambda: miniFtool.mini_ftool(checkbox_var.get()))
 
 root.mainloop()
