@@ -13,6 +13,6 @@ def mini_ftool(check):
                 if check == 1:
                     time.sleep(random.uniform(0, float(timer)))
                 else:
-                    time.sleep(int(timer))
+                    time.sleep(float(timer))
 
         time.sleep(1)
