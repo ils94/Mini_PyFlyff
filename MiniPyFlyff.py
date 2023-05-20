@@ -1,10 +1,11 @@
-from tkinter import Tk, Button, Label, Entry, X, LEFT, RIGHT, Frame, Checkbutton, IntVar, Menu
+from tkinter import Tk, Button, Label, Entry, X, LEFT, RIGHT, Frame, Checkbutton, IntVar, Menu, END
 import miscs
 import globalVariables
 import keyboardListener
 import miniFtool
 import helpWindow
 import os
+import saveConfigs
 
 
 def start_mini_ftool():
@@ -18,9 +19,12 @@ def save_mini_ftool_key():
     globalVariables.mini_ftool_keys = entry_mini_ftool_key.get().split(",")
     globalVariables.mini_ftool_key_timers = entry_mini_ftool_timers.get().split(",")
 
+    saveConfigs.save_config(entry_alt_control_keys.get(), entry_mini_ftool_key.get(), entry_mini_ftool_timers.get())
+
 
 def save_keys():
     globalVariables.alt_control_key_list = entry_alt_control_keys.get().split(",")
+    saveConfigs.save_config(entry_alt_control_keys.get(), entry_mini_ftool_key.get(), entry_mini_ftool_timers.get())
 
 
 def validate_input_timers(char):
@@ -72,7 +76,7 @@ checkbox_var = IntVar()
 label_alt_control = Label(text="Alt Control Key(s):")
 label_alt_control.pack(fill=X, padx=1, pady=1)
 
-entry_alt_control_keys = Entry(validate="key", validatecommand=(validation_keys, "%S"))
+entry_alt_control_keys = Entry(validate="none")
 entry_alt_control_keys.pack(fill=X, padx=1, pady=1)
 
 frame_alt_control_save_button = Frame(root)
@@ -84,13 +88,13 @@ button_alt_control_save.pack(side=LEFT, padx=1, pady=1)
 label_mini_ftool = Label(text="Mini Ftool Key(s):")
 label_mini_ftool.pack(fill=X, padx=1, pady=1)
 
-entry_mini_ftool_key = Entry(validate="key", validatecommand=(validation_keys, "%S"))
+entry_mini_ftool_key = Entry(validate="none")
 entry_mini_ftool_key.pack(fill=X, padx=1, pady=1)
 
 label_mini_ftool_timers = Label(text="Mini Ftool Key(s) Timers:")
 label_mini_ftool_timers.pack(fill=X, padx=1, pady=1)
 
-entry_mini_ftool_timers = Entry(validate="key", validatecommand=(validation_timers, "%S"))
+entry_mini_ftool_timers = Entry(validate="none")
 entry_mini_ftool_timers.pack(fill=X, padx=1, pady=1)
 
 frame_mini_ftool_checkbutton = Frame(root)
@@ -107,6 +111,19 @@ button_mini_ftool_save.pack(side=LEFT, padx=1, pady=1)
 
 button_mini_ftool_start_stop = Button(frame_mini_ftool_buttons, text="Start/Stop", command=start_mini_ftool)
 button_mini_ftool_start_stop.pack(side=RIGHT, padx=1, pady=1)
+
+entry_alt_control_keys.insert(END, saveConfigs.open_config()[0])
+entry_mini_ftool_key.insert(END, saveConfigs.open_config()[1])
+entry_mini_ftool_timers.insert(END, saveConfigs.open_config()[2])
+
+entry_alt_control_keys.config(validate='key')
+entry_alt_control_keys.config(validatecommand=(validation_keys, "%S"))
+
+entry_mini_ftool_key.config(validate='key')
+entry_mini_ftool_key.config(validatecommand=(validation_keys, "%S"))
+
+entry_mini_ftool_timers.config(validate='key')
+entry_mini_ftool_timers.config(validatecommand=(validation_timers, "%S"))
 
 miscs.multithreading(keyboardListener.listener)
 
