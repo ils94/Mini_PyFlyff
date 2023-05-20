@@ -50,7 +50,7 @@ menu_bar.add_cascade(label="Menu", menu=menu)
 root.config(menu=menu_bar)
 
 window_width = 250
-window_height = 225
+window_height = 220
 
 screen_width = root.winfo_screenwidth()
 screen_height = root.winfo_screenheight()
@@ -58,7 +58,7 @@ screen_height = root.winfo_screenheight()
 x = (screen_width / 2) - (window_width / 2)
 y = (screen_height / 2) - (window_height / 2)
 
-root.geometry("250x225+" + str(int(x)) + "+" + str(int(y)))
+root.geometry("250x220+" + str(int(x)) + "+" + str(int(y)))
 root.title("Mini PyFlyff")
 if os.path.isfile("icon/PyFlyff.ico"):
     root.iconbitmap("icon/PyFlyff.ico")

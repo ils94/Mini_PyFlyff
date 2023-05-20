@@ -1,11 +1,21 @@
-from tkinter import Tk, Toplevel, Label, LEFT, Button, X, PhotoImage
+from tkinter import Toplevel, Label, LEFT, Button, X, PhotoImage
 import os
-
-photo = None
 
 
 def open_help():
     help_window = Toplevel()
+
+    window_width = 450
+    window_height = 650
+
+    screen_width = help_window.winfo_screenwidth()
+    screen_height = help_window.winfo_screenheight()
+
+    x = (screen_width / 2) - (window_width / 2)
+    y = (screen_height / 2) - (window_height / 2)
+
+    help_window.geometry("450x650+" + str(int(x)) + "+" + str(int(y)))
+
     help_window.title("Help")
     if os.path.isfile("icon/PyFlyff.ico"):
         help_window.iconbitmap("icon/PyFlyff.ico")
@@ -22,7 +32,7 @@ def open_help():
                                          '\nthen send those keys to your Alt Client.'
                                          '\n\nMini Ftool Key(s): f1,f2,f3'
                                          '\n\nThis means that when you start the Mini Ftool loop, it will then'
-                                         '\nsend those keys sequencially to your Alt Client.'
+                                         '\nsend those keys sequentially to your Alt Client.'
                                          '\n\nMini Ftool Key(s) Timers: 1,5,10'
                                          '\n\nThis means that after the first key is pressed, there will be'
                                          '\n1 second delay for the second key to be pressed, which will then have'
@@ -30,7 +40,7 @@ def open_help():
                                          '\nhave 10 seconds delay to start over.'
                                          '\n\nChecking the "Make Timers Random" checkbox, will make it so there will be'
                                          '\na random number that will be generated between 0 and the number you choose.'
-                                         '\n\nFollowing the previous example we will have:'
+                                         '\n\nFollowing the previous example we have:'
                                          '\n\n•A number between 0 - 1.'
                                          '\n•A number between 0 - 5.'
                                          '\n•A number between 0 - 10.'
@@ -46,8 +56,21 @@ def open_help():
 
 def show_image_window():
     tutorial_image_window = Toplevel()
-    tutorial_image_window.title("Image Tutorial")
+
+    window_width = 260
+    window_height = 290
+
+    screen_width = tutorial_image_window.winfo_screenwidth()
+    screen_height = tutorial_image_window.winfo_screenheight()
+
+    x = (screen_width / 2) - (window_width / 2)
+    y = (screen_height / 2) - (window_height / 2)
+
+    tutorial_image_window.geometry("260x290+" + str(int(x)) + "+" + str(int(y)))
+
     tutorial_image_window.geometry("260x290")
+
+    tutorial_image_window.title("Image Tutorial")
     if os.path.isfile("icon/PyFlyff.ico"):
         tutorial_image_window.iconbitmap("icon/PyFlyff.ico")
     tutorial_image_window.resizable(False, False)
