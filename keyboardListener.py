@@ -9,6 +9,5 @@ def listener():
 
 
 def send_key(event):
-    print(event.name)
     if event.name in globalVariables.alt_control_key_list:
         browserControl.firefox_window(event.name)
