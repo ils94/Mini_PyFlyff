@@ -2,6 +2,7 @@ import time
 import random
 import browserControl
 import globalVariables
+from tkinter import messagebox
 
 
 def mini_ftool(check):
@@ -16,8 +17,10 @@ def mini_ftool(check):
                     else:
                         time.sleep(float(timer))
         except Exception as e:
-            print(e)
-            time.sleep(1)
+            messagebox.showerror("Error", "There is something wrong with the Mini Ftool Timers. "
+                                          "Stop the loop and fix it."
+                                          "\n\nError message: " + str(e))
+            time.sleep(5)
             continue
 
-        time.sleep(1)
+        time.sleep(0.1)
