@@ -1,3 +1,8 @@
+# Direct download link:
+[Download from this link](https://github.com/ils94/Mini_PyFlyff/releases/download/release/MiniPyFlyff.zip)
+
+Last binary update: 05/20/2023
+
 # Mini PyFlyff
 A mini version of PyFlyff for Mozilla FireFox. This tool has the Alt Control feature from PyFlyff and a better Mini Ftool.
 
