@@ -33,4 +33,4 @@ enable/disable it.
 
 Here is a image of an valid Mini yFlyff Configuration:
 
-![enter image description here](https://i.imgur.com/NouwVNj.png)
+![enter image description here](https://raw.githubusercontent.com/ils94/Mini_PyFlyff/master/help/help.PNG)
