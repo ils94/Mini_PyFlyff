@@ -33,6 +33,6 @@ Start/Stop it, you also can setup a shortcut.
 You can enable/disable the Mini Ftool by clicking the button to
 enable/disable it.
 
-Here is a image of an valid Mini PyFlyff Configuration:
+Here is an image of an valid Mini PyFlyff Configuration:
 
 ![enter image description here](https://raw.githubusercontent.com/ils94/Mini_PyFlyff/master/help/help.PNG)
