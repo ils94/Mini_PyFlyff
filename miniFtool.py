@@ -8,7 +8,7 @@ from tkinter import messagebox
 def mini_ftool(check):
     while True:
         try:
-            if globalVariables.mini_ftool_on:
+            if globalVariables.mini_ftool_on and globalVariables.mini_ftool_enable_disabled:
                 for key, timer in zip(globalVariables.mini_ftool_keys, globalVariables.mini_ftool_key_timers):
                     browserControl.mini_ftool_send_keys(key)
 

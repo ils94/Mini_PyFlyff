@@ -18,8 +18,11 @@ Mini Ftool loop.
 You can check the box "Make Timers Random" to generate a random
 delay between each key press.
 
-You can start/stop the Mini Ftool loop by clicking the button  to 
-Start/Stop it, or you can setup a shortcut to start/stop it.
+You can start/stop the Mini Ftool loop by clicking the button to 
+Start/Stop it, you also can setup a shortcut.
+
+You can enable/disable the Mini Ftool by clicking the button to
+enable/disable it.
 
 Click the button below to see a picture of a valid Mini PyFlyff 
 configuration:"""
@@ -29,7 +32,7 @@ def open_help():
     help_window = Toplevel()
 
     window_width = 400
-    window_height = 400
+    window_height = 425
 
     screen_width = help_window.winfo_screenwidth()
     screen_height = help_window.winfo_screenheight()
@@ -37,7 +40,7 @@ def open_help():
     x = (screen_width / 2) - (window_width / 2)
     y = (screen_height / 2) - (window_height / 2)
 
-    help_window.geometry("400x400+" + str(int(x)) + "+" + str(int(y)))
+    help_window.geometry("400x425+" + str(int(x)) + "+" + str(int(y)))
 
     help_window.title("Help")
     if os.path.isfile("icon/PyFlyff.ico"):

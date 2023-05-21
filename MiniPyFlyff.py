@@ -1,4 +1,4 @@
-from tkinter import Tk, Button, Label, Entry, X, LEFT, Frame, Checkbutton, IntVar, Menu, END
+from tkinter import Tk, Button, Label, Entry, X, LEFT, RIGHT, Frame, Checkbutton, IntVar, Menu, END
 import miscs
 import keyboardListener
 import miniFtool
@@ -91,6 +91,11 @@ frame_mini_ftool_buttons.pack(fill=X, padx=1, pady=1)
 button_mini_ftool_start_stop = Button(frame_mini_ftool_buttons, text="Start", width=10)
 button_mini_ftool_start_stop.pack(side=LEFT, padx=1, pady=1)
 button_mini_ftool_start_stop.config(command=lambda: toolControl.start_stop_mini_ftool(button_mini_ftool_start_stop))
+
+button_mini_ftool_enable_disable = Button(frame_mini_ftool_buttons, text="Enable", width=10)
+button_mini_ftool_enable_disable.pack(side=RIGHT, padx=1, pady=1)
+button_mini_ftool_enable_disable.config(
+    command=lambda: toolControl.enable_disable_mini_ftool(button_mini_ftool_enable_disable))
 
 entry_alt_control_keys.insert(END, saveConfigs.open_json_config()[0])
 entry_mini_ftool_key.insert(END, saveConfigs.open_json_config()[1])

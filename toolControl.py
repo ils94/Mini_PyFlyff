@@ -17,3 +17,12 @@ def start_stop_mini_ftool(button):
     else:
         globalVariables.mini_ftool_on = True
         button["text"] = "Stop"
+
+
+def enable_disable_mini_ftool(button):
+    if globalVariables.mini_ftool_enable_disabled:
+        globalVariables.mini_ftool_enable_disabled = False
+        button["text"] = "Enable"
+    else:
+        globalVariables.mini_ftool_enable_disabled = True
+        button["text"] = "Disable"
