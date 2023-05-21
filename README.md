@@ -9,6 +9,8 @@ A mini version of PyFlyff for Mozilla FireFox. This tool has the Alt Control fea
 # What do I need to use this tool?
 You need to install Mozilla Firefox web browser to be able to use this tool, download it from their official site: https://www.mozilla.org/
 
+Also, you must play with your alt through Mozilla Firefox, since this tool was made specifically to send keystrokes to Mozilla Firefox.
+
 # Tutorial on how to use it:
 - Separate every key with commas ","
 - Separate every timer with commas ","
