@@ -13,26 +13,24 @@ You need to install Mozilla Firefox web browser to be able to use this tool, dow
 - Separate every key with commas ","
 - Separate every timer with commas ","
 
-You can enable/disable Alt Control keys by
-clicking the button to enable/disable it.
+You can enable/disable Alt Control keys by clicking the button to 
+enable/disable it.
 
-You can set up timers for each key in the
-Mini Ftool. Each timer will be executed
-once that key is pressed.
+You can set up timers for each key in the Mini Ftool. Each timer 
+will be executed once that key is pressed.
 
-You can create a shortcut to make it easier
-to start/stop the Mini Ftool loop.
+You can create a shortcut to make it easier to start/stop the 
+Mini Ftool loop.
 
-You can check the box "Make Timers Random"
-so each timer will generate a random number
-between 0 and it, where the result will be
-the random number which will be used to delay
-the next button press.
+You can check the box "Make Timers Random" to generate a random
+delay between each key press.
 
-You can start/stop the Mini Ftool loop by
-clicking the button to Start/Stop it, or
-you can setup a shortcut to start/stop it.
+You can start/stop the Mini Ftool loop by clicking the button to 
+Start/Stop it, you also can setup a shortcut.
+
+You can enable/disable the Mini Ftool by clicking the button to
+enable/disable it.
 
 Here is a image of an valid Mini yFlyff Configuration:
 
-![enter image description here](https://i.imgur.com/MLEubSM.png)
+![enter image description here](https://i.imgur.com/NouwVNj.png)
