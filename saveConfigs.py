@@ -4,13 +4,18 @@ import globalVariables
 import keyboardListener
 
 
-def create_json_config(entry1, entry2, entry3, entry4, checkbox_value):
+def create_json_config(entry1, entry2, entry3, entry4, checkbox_value, entry5, entry6, entry7, entry8, entry9):
     data = {
         "value1": entry1,
         "value2": entry2,
         "value3": entry3,
         "value4": entry4,
-        "value5": checkbox_value
+        "value5": checkbox_value,
+        "value6": entry5,
+        "value7": entry6,
+        "value8": entry7,
+        "value9": entry8,
+        "value10": entry9
     }
 
     with open("config.json", "w") as json_file:
@@ -30,17 +35,23 @@ def open_json_config():
                 value3 = data['value3']
                 value4 = data['value4']
                 value5 = data['value5']
+                value6 = data['value6']
+                value7 = data['value7']
+                value8 = data['value8']
+                value9 = data['value9']
+                value10 = data['value10']
 
-                return value1, value2, value3, value4, value5
+                return value1, value2, value3, value4, value5, value6, value7, value8, value9, value10
         else:
-            return "", "", "", "", 0
+            return "", "", "", "", 0, "", "", "", "", ""
     except Exception as e:
         print(e)
         os.remove("config.json")
-        return "", "", "", "", 0
+        return "", "", "", "", 0, "", "", "", "", ""
 
 
-def save_key_configs(entry1, entry2, entry3, entry4, checkbox, function):
+def save_key_configs(entry1, entry2, entry3, entry4, checkbox, function, entry5, entry6, entry7, entry8, entry9,
+                     function2):
     globalVariables.alt_control_key_list = entry1.get().split(",")
 
     globalVariables.mini_ftool_keys = entry2.get().split(",")
@@ -48,4 +59,15 @@ def save_key_configs(entry1, entry2, entry3, entry4, checkbox, function):
 
     keyboardListener.set_mini_ftool_shortcut(entry4.get(), function)
 
-    create_json_config(entry1.get(), entry2.get(), entry3.get(), entry4.get(), checkbox)
+    globalVariables.buffer_keys = entry5.get().split(",")
+
+    globalVariables.buffs_hotbar = entry6.get()
+
+    globalVariables.previous_hotbar = entry7.get()
+
+    globalVariables.buffer_timer = entry8.get()
+
+    keyboardListener.buffer_shortcut(entry9.get(), function2)
+
+    create_json_config(entry1.get(), entry2.get(), entry3.get(), entry4.get(), checkbox, entry5.get(), entry6.get(),
+                       entry7.get(), entry8.get(), entry9.get())

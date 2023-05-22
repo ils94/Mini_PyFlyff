@@ -26,3 +26,12 @@ def enable_disable_mini_ftool(button):
     else:
         globalVariables.mini_ftool_enable_disabled = True
         button["text"] = "Disable"
+
+
+def enable_disable_buffer(button):
+    if globalVariables.buffer_enable_disabled:
+        globalVariables.buffer_enable_disabled = False
+        button["text"] = "Enable"
+    else:
+        globalVariables.buffer_enable_disabled = True
+        button["text"] = "Disable"

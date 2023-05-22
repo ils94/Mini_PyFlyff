@@ -17,10 +17,25 @@ def send_key(event):
 def set_mini_ftool_shortcut(key_sequence, function):
     try:
         if key_sequence:
-            globalVariables.mini_ftool_hotkey = keyboard.add_hotkey(key_sequence, function)
+            globalVariables.mini_ftool_shortcut = keyboard.add_hotkey(key_sequence, function)
         else:
-            if globalVariables.mini_ftool_hotkey:
-                keyboard.remove_hotkey(globalVariables.mini_ftool_hotkey)
+            if globalVariables.mini_ftool_shortcut:
+                keyboard.remove_hotkey(globalVariables.mini_ftool_shortcut)
+                globalVariables.mini_ftool_shortcut = None
+    except Exception as e:
+        messagebox.showerror("Error", "This is not a valid shortcut."
+                                      "\n\nError:"
+                                      "\n\n" + str(e))
+
+
+def buffer_shortcut(key_sequence, function):
+    try:
+        if key_sequence:
+            globalVariables.buffer_shortcut = keyboard.add_hotkey(key_sequence, function)
+        else:
+            if globalVariables.buffer_shortcut:
+                keyboard.remove_hotkey(globalVariables.buffer_shortcut)
+                globalVariables.buffer_shortcut = None
     except Exception as e:
         messagebox.showerror("Error", "This is not a valid shortcut."
                                       "\n\nError:"

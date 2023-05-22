@@ -19,3 +19,17 @@ def validate_input_keys(char):
         return True
     else:
         return False
+
+
+def validate_input_buffer_key(char):
+    if char.isalnum():
+        return True
+    else:
+        return False
+
+
+def validate_input_buffer_timer(char):
+    if char.isdigit():
+        return True
+    else:
+        return False
