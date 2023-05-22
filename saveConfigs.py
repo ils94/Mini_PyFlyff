@@ -59,8 +59,8 @@ def save_key_configs(entry1, entry2, entry3, entry4, checkbox, function, entry5,
                      function2, entry10, entry11):
     globalVariables.alt_control_key_list = entry1.get().split(",")
 
-    globalVariables.mini_ftool_keys = entry2.get().split(",")
-    globalVariables.mini_ftool_key_timers = entry3.get().split(",")
+    globalVariables.macro_loop_keys = entry2.get().split(",")
+    globalVariables.macro_loop_key_timers = entry3.get().split(",")
 
     keyboardListener.set_mini_ftool_shortcut(entry4.get(), function)
 

@@ -6,9 +6,12 @@ from tkinter import messagebox
 
 mini_ftool_check = False
 
+gt_buffer_check = False
+
 
 def buffer_loop(button):
     global mini_ftool_check
+    global gt_buffer_check
 
     while True:
         try:
@@ -17,11 +20,13 @@ def buffer_loop(button):
 
                     if globalVariables.buffer_enable_disabled and globalVariables.buffer_timer:
 
-                        globalVariables.gt_buffer = False
-
-                        if globalVariables.mini_ftool_enable_disabled:
+                        if globalVariables.macro_loop_enable_disabled:
                             mini_ftool_check = True
                             toolControl.enable_disable_mini_ftool(button)
+
+                        if globalVariables.gt_buffer:
+                            gt_buffer_check = True
+                            globalVariables.gt_buffer = False
 
                         windowsAPI.windows_api(globalVariables.buffs_hotbar)
                         time.sleep(0.1)
@@ -33,12 +38,16 @@ def buffer_loop(button):
                 if mini_ftool_check:
                     toolControl.enable_disable_mini_ftool(button)
 
-                globalVariables.gt_buffer = True
+                if gt_buffer_check:
+                    globalVariables.gt_buffer = True
 
                 if globalVariables.buffer_timer and globalVariables.buffer_enable_disabled:
                     windowsAPI.windows_api(globalVariables.previous_hotbar)
 
                     time.sleep(float(globalVariables.buffer_timer))
+
+                mini_ftool_check = False
+                gt_buffer_check = False
 
         except Exception as e:
             messagebox.showerror("Error", str(e))

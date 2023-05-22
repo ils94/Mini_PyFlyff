@@ -2,7 +2,7 @@ from tkinter import Button, Label, Entry, X, LEFT, RIGHT, Frame, Checkbutton, In
 
 import globalVariables
 import keyboardListener
-import miniFtool
+import macroLoop
 import helpWindow
 import os
 import saveConfigs
@@ -32,13 +32,13 @@ menu = Menu(menu_bar, tearoff=0)
 menu.add_command(label="Help", command=lambda: helpWindow.open_help())
 
 menu.add_command(label="Save Keys", command=lambda: saveConfigs.save_key_configs(entry_alt_control_keys,
-                                                                                 entry_mini_ftool_key,
-                                                                                 entry_mini_ftool_timers,
-                                                                                 entry_mini_ftool_shortcut,
+                                                                                 entry_macro_loop_key,
+                                                                                 entry_macro_loop_timers,
+                                                                                 entry_macro_loop_shortcut,
                                                                                  checkbox_var.get(),
                                                                                  lambda:
                                                                                  toolControl.start_stop_mini_ftool(
-                                                                                     button_mini_ftool_start_stop),
+                                                                                     button_macro_loop_start_stop),
                                                                                  entry_buffer,
                                                                                  entry_buffs_hotbar,
                                                                                  entry_previous_hotbar,
@@ -91,41 +91,41 @@ button_alt_control_start_stop = Button(frame_alt_control_save_button, text="Enab
 button_alt_control_start_stop.pack(side=RIGHT, padx=1, pady=1)
 button_alt_control_start_stop.config(command=lambda: toolControl.start_stop_alt_control(button_alt_control_start_stop))
 
-label_mini_ftool = Label(text="Mini Ftool Key(s):")
-label_mini_ftool.pack(fill=X, padx=1, pady=1)
+label_macro_loop = Label(text="Macro Loop Key(s):")
+label_macro_loop.pack(fill=X, padx=1, pady=1)
 
-entry_mini_ftool_key = Entry(validate="none")
-entry_mini_ftool_key.pack(fill=X, padx=1, pady=1)
+entry_macro_loop_key = Entry(validate="none")
+entry_macro_loop_key.pack(fill=X, padx=1, pady=1)
 
-label_mini_ftool_timers = Label(text="Mini Ftool Key(s) Timers:")
-label_mini_ftool_timers.pack(fill=X, padx=1, pady=1)
+label_macro_loop_timers = Label(text="Macro Loop Key(s) Timer(s):")
+label_macro_loop_timers.pack(fill=X, padx=1, pady=1)
 
-entry_mini_ftool_timers = Entry(validate="none")
-entry_mini_ftool_timers.pack(fill=X, padx=1, pady=1)
+entry_macro_loop_timers = Entry(validate="none")
+entry_macro_loop_timers.pack(fill=X, padx=1, pady=1)
 
-label_mini_ftool_shortcut = Label(text="Mini Ftool Shortcut:")
-label_mini_ftool_shortcut.pack(fill=X, padx=1, pady=1)
+label_macro_loop_shortcut = Label(text="Macro Loop Shortcut:")
+label_macro_loop_shortcut.pack(fill=X, padx=1, pady=1)
 
-entry_mini_ftool_shortcut = Entry(validate="none")
-entry_mini_ftool_shortcut.pack(fill=X, padx=1, pady=1)
+entry_macro_loop_shortcut = Entry(validate="none")
+entry_macro_loop_shortcut.pack(fill=X, padx=1, pady=1)
 
-frame_mini_ftool_checkbutton = Frame(root)
-frame_mini_ftool_checkbutton.pack(fill=X, padx=1, pady=1)
+frame_macro_loop_checkbutton = Frame(root)
+frame_macro_loop_checkbutton.pack(fill=X, padx=1, pady=1)
 
-checkbutton_mini_ftool = Checkbutton(frame_mini_ftool_checkbutton, text="Make Timers Random", variable=checkbox_var)
-checkbutton_mini_ftool.pack(side=LEFT, padx=1, pady=1)
+checkbutton_macro_loop = Checkbutton(frame_macro_loop_checkbutton, text="Make Timers Random", variable=checkbox_var)
+checkbutton_macro_loop.pack(side=LEFT, padx=1, pady=1)
 
-frame_mini_ftool_buttons = Frame(root)
-frame_mini_ftool_buttons.pack(fill=X, padx=1, pady=1)
+frame_macro_loop_buttons = Frame(root)
+frame_macro_loop_buttons.pack(fill=X, padx=1, pady=1)
 
-button_mini_ftool_start_stop = Button(frame_mini_ftool_buttons, text="Start", width=10)
-button_mini_ftool_start_stop.pack(side=LEFT, padx=1, pady=1)
-button_mini_ftool_start_stop.config(command=lambda: toolControl.start_stop_mini_ftool(button_mini_ftool_start_stop))
+button_macro_loop_start_stop = Button(frame_macro_loop_buttons, text="Start", width=10)
+button_macro_loop_start_stop.pack(side=LEFT, padx=1, pady=1)
+button_macro_loop_start_stop.config(command=lambda: toolControl.start_stop_mini_ftool(button_macro_loop_start_stop))
 
-button_mini_ftool_enable_disable = Button(frame_mini_ftool_buttons, text="Enable", width=10)
-button_mini_ftool_enable_disable.pack(side=RIGHT, padx=1, pady=1)
-button_mini_ftool_enable_disable.config(
-    command=lambda: toolControl.enable_disable_mini_ftool(button_mini_ftool_enable_disable))
+button_macro_loop_enable_disable = Button(frame_macro_loop_buttons, text="Enable", width=10)
+button_macro_loop_enable_disable.pack(side=RIGHT, padx=1, pady=1)
+button_macro_loop_enable_disable.config(
+    command=lambda: toolControl.enable_disable_mini_ftool(button_macro_loop_enable_disable))
 
 label_buffer = Label(text="Buffer Key(s):")
 label_buffer.pack(fill=X, padx=1, pady=1)
@@ -201,9 +201,9 @@ button_buffer_disable_enable.pack(side=RIGHT, padx=1, pady=1)
 button_buffer_disable_enable.config(command=lambda: toolControl.enable_disable_buffer(button_buffer_disable_enable))
 
 entry_alt_control_keys.insert(END, saveConfigs.open_json_config()[0])
-entry_mini_ftool_key.insert(END, saveConfigs.open_json_config()[1])
-entry_mini_ftool_timers.insert(END, saveConfigs.open_json_config()[2])
-entry_mini_ftool_shortcut.insert(END, saveConfigs.open_json_config()[3])
+entry_macro_loop_key.insert(END, saveConfigs.open_json_config()[1])
+entry_macro_loop_timers.insert(END, saveConfigs.open_json_config()[2])
+entry_macro_loop_shortcut.insert(END, saveConfigs.open_json_config()[3])
 entry_buffer.insert(END, saveConfigs.open_json_config()[5])
 entry_buffs_hotbar.insert(END, saveConfigs.open_json_config()[6])
 entry_previous_hotbar.insert(END, saveConfigs.open_json_config()[7])
@@ -215,11 +215,11 @@ entry_GT_timer.insert(END, saveConfigs.open_json_config()[11])
 entry_alt_control_keys.config(validate="key")
 entry_alt_control_keys.config(validatecommand=(validation_keys, "%S"))
 
-entry_mini_ftool_key.config(validate="key")
-entry_mini_ftool_key.config(validatecommand=(validation_keys, "%S"))
+entry_macro_loop_key.config(validate="key")
+entry_macro_loop_key.config(validatecommand=(validation_keys, "%S"))
 
-entry_mini_ftool_timers.config(validate="key")
-entry_mini_ftool_timers.config(validatecommand=(validation_timers, "%S"))
+entry_macro_loop_timers.config(validate="key")
+entry_macro_loop_timers.config(validatecommand=(validation_timers, "%S"))
 
 entry_buffer.config(validate="key")
 entry_buffer.config(validatecommand=(validation_keys, "%S"))
@@ -243,9 +243,9 @@ checkbox_var.set(int(saveConfigs.open_json_config()[4]))
 
 miscs.multithreading(keyboardListener.listener)
 
-miscs.multithreading(lambda: miniFtool.mini_ftool(checkbox_var.get()))
+miscs.multithreading(lambda: macroLoop.macro_loop(checkbox_var.get()))
 
-miscs.multithreading(lambda: bufferLoop.buffer_loop(button_mini_ftool_enable_disable))
+miscs.multithreading(lambda: bufferLoop.buffer_loop(button_macro_loop_enable_disable))
 
 miscs.multithreading(lambda: bufferLoop.gt_buffer())
 

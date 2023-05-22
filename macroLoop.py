@@ -5,12 +5,12 @@ import globalVariables
 from tkinter import messagebox
 
 
-def mini_ftool(check):
+def macro_loop(check):
     while True:
         try:
-            if globalVariables.mini_ftool_on and globalVariables.mini_ftool_enable_disabled:
-                for key, timer in zip(globalVariables.mini_ftool_keys, globalVariables.mini_ftool_key_timers):
-                    if globalVariables.mini_ftool_on and globalVariables.mini_ftool_enable_disabled:
+            if globalVariables.macro_loop_on and globalVariables.macro_loop_enable_disabled:
+                for key, timer in zip(globalVariables.macro_loop_keys, globalVariables.macro_loop_key_timers):
+                    if globalVariables.macro_loop_on and globalVariables.macro_loop_enable_disabled:
                         windowsAPI.windows_api(key)
 
                         if check == 1:
