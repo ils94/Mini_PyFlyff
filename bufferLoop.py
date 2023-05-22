@@ -17,6 +17,8 @@ def buffer_loop(button):
 
                     if globalVariables.buffer_enable_disabled and globalVariables.buffer_timer:
 
+                        globalVariables.gt_buffer = False
+
                         if globalVariables.mini_ftool_enable_disabled:
                             mini_ftool_check = True
                             toolControl.enable_disable_mini_ftool(button)
@@ -30,6 +32,8 @@ def buffer_loop(button):
 
                 if mini_ftool_check:
                     toolControl.enable_disable_mini_ftool(button)
+
+                globalVariables.gt_buffer = True
 
                 if globalVariables.buffer_timer and globalVariables.buffer_enable_disabled:
                     windowsAPI.windows_api(globalVariables.previous_hotbar)
@@ -46,6 +50,9 @@ def buffer_loop(button):
 
 def gt_buffer():
     while True:
-        windowsAPI.windows_api("1")
+        if globalVariables.gt_buffer and globalVariables.gt_timer:
+            windowsAPI.windows_api(globalVariables.gt_buffer_key)
 
-        time.sleep(10)
+            time.sleep(float(globalVariables.gt_timer))
+
+        time.sleep(0.1)

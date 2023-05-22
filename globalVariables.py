@@ -23,3 +23,9 @@ previous_hotbar = None
 buffer_timer = None
 
 buffer_shortcut = None
+
+gt_buffer = False
+
+gt_buffer_key = ""
+
+gt_timer = ""
