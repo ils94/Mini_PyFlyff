@@ -12,7 +12,7 @@ import bufferLoop
 def gt_checkbutton_state():
     if gt_checkbox_var.get() == 1:
         globalVariables.gt_buffer = True
-        miscs.multithreading(bufferLoop.gt_buffer)
+        miscs.multithreading(lambda: bufferLoop.gt_buffer())
     else:
         globalVariables.gt_buffer = False
 

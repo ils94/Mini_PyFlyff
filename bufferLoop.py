@@ -57,14 +57,21 @@ def buffer_loop(button1, button2, button3):
 
                 if buffer_countdown:
                     while buffer_countdown:
-                        if globalVariables.buffer_enable_disabled and globalVariables.buffer_is_on and globalVariables.buffer_delay:
-                            buffer_countdown = buffer_countdown - 1
-                            time.sleep(1)
+                        if globalVariables.buffer_delay:
+                            if globalVariables.buffer_enable_disabled and globalVariables.buffer_is_on:
+                                buffer_countdown = buffer_countdown - 1
+                                time.sleep(1)
+                            else:
+                                break
                 else:
                     while buffer_default_countdown:
                         if globalVariables.buffer_enable_disabled and globalVariables.buffer_is_on:
                             buffer_default_countdown = buffer_default_countdown - 1
                             time.sleep(1)
+                        else:
+                            break
+            else:
+                break
 
         globalVariables.buffer_is_going = False
 
@@ -84,32 +91,42 @@ def buffer_loop(button1, button2, button3):
 
             if gt_buffer_check and not globalVariables.gt_buffer:
                 globalVariables.gt_buffer = True
-                miscs.multithreading(gt_buffer)
+
+                miscs.multithreading(lambda: gt_buffer())
 
             miscs.multithreading(lambda: macroLoop.macro_loop())
 
 
 def gt_buffer():
-    while globalVariables.gt_buffer:
+    while True:
 
-        countdown = float(globalVariables.gt_buffer_delay)
+        if globalVariables.gt_buffer:
 
-        default_countdown = 45
+            countdown = float(globalVariables.gt_buffer_delay)
 
-        windowsAPI.windows_api(globalVariables.gt_buffer_hotbar)
-        time.sleep(1)
-        windowsAPI.windows_api(globalVariables.gt_buffer_key)
+            default_countdown = 45
 
-        if globalVariables.gt_buffer_delay and globalVariables.gt_buffer:
+            windowsAPI.windows_api(globalVariables.gt_buffer_hotbar)
+            time.sleep(0.5)
+            windowsAPI.windows_api(globalVariables.gt_buffer_key)
 
-            while countdown:
-                if globalVariables.gt_buffer and globalVariables.gt_buffer_delay:
-                    countdown = countdown - 1
-                    time.sleep(1)
+            if globalVariables.gt_buffer_delay:
+
+                while countdown:
+                    if globalVariables.gt_buffer_delay:
+                        if globalVariables.gt_buffer:
+                            countdown = countdown - 1
+                            time.sleep(1)
+                        else:
+                            break
+            else:
+                while default_countdown:
+                    if globalVariables.gt_buffer:
+                        default_countdown = default_countdown - 1
+                        time.sleep(1)
+                    else:
+                        break
         else:
-            while default_countdown:
-                if globalVariables.gt_buffer:
-                    default_countdown = default_countdown - 1
-                    time.sleep(1)
+            break
 
-    time.sleep(0.5)
+        time.sleep(0.5)
