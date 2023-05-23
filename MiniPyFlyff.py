@@ -54,8 +54,7 @@ menu.add_command(label="Save Config", command=lambda: saveConfigs.save_key_confi
                                                                                        button_macro_loop_start_stop,
                                                                                        button_macro_loop_enable_disable),
                                                                                    entry_GT_key,
-                                                                                   entry_GT_delay,
-                                                                                   entry_GT_hotbar))
+                                                                                   entry_GT_delay))
 
 menu_bar.add_cascade(label="Menu", menu=menu)
 
@@ -209,11 +208,11 @@ create_tooltip(button_buffer_start_stop, "Start/Stop the Buffer")
 frame_buffer_2 = Frame(root)
 frame_buffer_2.pack(fill=X, padx=1, pady=1)
 
-checkbutton_gt = Checkbutton(frame_buffer_2, text="GT", variable=gt_checkbox_var, command=gt_checkbutton_state)
+checkbutton_gt = Checkbutton(frame_buffer_2, text="Activate GT", variable=gt_checkbox_var, command=gt_checkbutton_state)
 checkbutton_gt.pack(side=LEFT, padx=1, pady=1)
 create_tooltip(checkbutton_gt, "Mark this box to initiate the GT Buffer.")
 
-label_GT_key = Label(frame_buffer_2, text="Key:")
+label_GT_key = Label(frame_buffer_2, text="GT Key:")
 label_GT_key.pack(side=LEFT, padx=1, pady=1)
 create_tooltip(label_GT_key, "Key to use GT")
 
@@ -221,15 +220,7 @@ entry_GT_key = Entry(frame_buffer_2, width=4, validate="none")
 entry_GT_key.pack(side=LEFT, padx=1, pady=1)
 create_tooltip(entry_GT_key, "Key to use GT")
 
-label_GT_hotbar = Label(frame_buffer_2, text="Hotbar:")
-label_GT_hotbar.pack(side=LEFT, padx=1, pady=1)
-create_tooltip(label_GT_hotbar, "The hotbar where your GT is.")
-
-entry_GT_hotbar = Entry(frame_buffer_2, width=4, validate="none")
-entry_GT_hotbar.pack(side=LEFT, padx=1, pady=1)
-create_tooltip(entry_GT_hotbar, "The hotbar where your GT is.")
-
-label_GT_delay = Label(frame_buffer_2, text="Delay:")
+label_GT_delay = Label(frame_buffer_2, text="GT Delay:")
 label_GT_delay.pack(side=LEFT, padx=1, pady=1)
 create_tooltip(label_GT_delay, "Delay to use GT")
 
@@ -248,7 +239,6 @@ entry_buffer_delay.insert(END, saveConfigs.open_json_config()[8])
 entry_buffer_shortcut.insert(END, saveConfigs.open_json_config()[9])
 entry_GT_key.insert(END, saveConfigs.open_json_config()[10])
 entry_GT_delay.insert(END, saveConfigs.open_json_config()[11])
-entry_GT_hotbar.insert(END, saveConfigs.open_json_config()[12])
 
 entry_alt_control_keys.config(validate="key")
 entry_alt_control_keys.config(validatecommand=(validation_keys, "%S"))
@@ -276,9 +266,6 @@ entry_GT_key.config(validatecommand=(validation_buffer_key, "%S"))
 
 entry_GT_delay.config(validate="key")
 entry_GT_delay.config(validatecommand=(validation_buffer_delays, "%S"))
-
-entry_GT_hotbar.config(validate="key")
-entry_GT_hotbar.config(validatecommand=(validation_buffer_key, "%S"))
 
 random_delay_checkbox_var.set(int(saveConfigs.open_json_config()[4]))
 

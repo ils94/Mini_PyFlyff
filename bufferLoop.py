@@ -102,12 +102,13 @@ def gt_buffer():
 
         if globalVariables.gt_buffer:
 
-            countdown = float(globalVariables.gt_buffer_delay)
+            countdown = globalVariables.gt_buffer_delay
+
+            if countdown:
+                countdown = float(globalVariables.gt_buffer_delay)
 
             default_countdown = 45
 
-            windowsAPI.windows_api(globalVariables.gt_buffer_hotbar)
-            time.sleep(0.5)
             windowsAPI.windows_api(globalVariables.gt_buffer_key)
 
             if globalVariables.gt_buffer_delay:

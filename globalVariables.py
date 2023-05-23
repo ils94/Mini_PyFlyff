@@ -35,5 +35,3 @@ gt_buffer = False
 gt_buffer_key = None
 
 gt_buffer_delay = None
-
-gt_buffer_hotbar = None
