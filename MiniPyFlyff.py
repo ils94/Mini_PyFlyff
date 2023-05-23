@@ -42,11 +42,9 @@ menu.add_command(label="Save Keys", command=lambda: saveConfigs.save_key_configs
                                                                                  entry_buffer,
                                                                                  entry_buffs_hotbar,
                                                                                  entry_previous_hotbar,
-                                                                                 entry_buffer_timer,
+                                                                                 entry_buffer_delay,
                                                                                  entry_buffer_shortcut,
-                                                                                 lambda:
-                                                                                 toolControl.enable_disable_buffer(
-                                                                                     button_buffer_disable_enable),
+                                                                                 None,
                                                                                  entry_GT_key,
                                                                                  entry_GT_timer))
 
@@ -54,8 +52,8 @@ menu_bar.add_cascade(label="Menu", menu=menu)
 
 root.config(menu=menu_bar)
 
-window_width = 250
-window_height = 420
+window_width = 260
+window_height = 430
 
 screen_width = root.winfo_screenwidth()
 screen_height = root.winfo_screenheight()
@@ -63,7 +61,7 @@ screen_height = root.winfo_screenheight()
 x = (screen_width / 2) - (window_width / 2)
 y = (screen_height / 2) - (window_height / 2)
 
-root.geometry("250x420+" + str(int(x)) + "+" + str(int(y)))
+root.geometry("260x430+" + str(int(x)) + "+" + str(int(y)))
 root.title("Mini PyFlyff")
 if os.path.isfile("icon/PyFlyff.ico"):
     root.iconbitmap("icon/PyFlyff.ico")
@@ -97,7 +95,7 @@ label_macro_loop.pack(fill=X, padx=1, pady=1)
 entry_macro_loop_key = Entry(validate="none")
 entry_macro_loop_key.pack(fill=X, padx=1, pady=1)
 
-label_macro_loop_timers = Label(text="Macro Loop Key(s) Timer(s):")
+label_macro_loop_timers = Label(text="Macro Loop Delay(s):")
 label_macro_loop_timers.pack(fill=X, padx=1, pady=1)
 
 entry_macro_loop_timers = Entry(validate="none")
@@ -112,7 +110,7 @@ entry_macro_loop_shortcut.pack(fill=X, padx=1, pady=1)
 frame_macro_loop_checkbutton = Frame(root)
 frame_macro_loop_checkbutton.pack(fill=X, padx=1, pady=1)
 
-checkbutton_macro_loop = Checkbutton(frame_macro_loop_checkbutton, text="Make Timers Random", variable=checkbox_var)
+checkbutton_macro_loop = Checkbutton(frame_macro_loop_checkbutton, text="Random Delays", variable=checkbox_var)
 checkbutton_macro_loop.pack(side=LEFT, padx=1, pady=1)
 
 frame_macro_loop_buttons = Frame(root)
@@ -136,62 +134,37 @@ entry_buffer.pack(fill=X, padx=1, pady=1)
 frame_buffer_1 = Frame(root)
 frame_buffer_1.pack(fill=X, padx=1, pady=1)
 
-label_buffs_hotbar = Label(frame_buffer_1, text="B. Hotbar:")
+label_buffs_hotbar = Label(frame_buffer_1, text="Hotbar:")
 label_buffs_hotbar.pack(side=LEFT, padx=1, pady=1)
-create_tooltip(label_buffs_hotbar, "Buffs Hotbar: The hotkey for the hotbar where your buffs are.")
+create_tooltip(label_buffs_hotbar, "The hotkey for the hotbar where your buffs are.")
 
-entry_buffs_hotbar = Entry(frame_buffer_1, width=2, validate="none")
+entry_buffs_hotbar = Entry(frame_buffer_1, width=5, validate="none")
 entry_buffs_hotbar.pack(side=LEFT, padx=1, pady=1)
-create_tooltip(entry_buffs_hotbar, "Buffs Hotbar: The hotkey for the hotbar where your buffs are.")
+create_tooltip(entry_buffs_hotbar, "The hotkey for the hotbar where your buffs are.")
 
-label_preview_hotbar = Label(frame_buffer_1, text="P. Hotbar:")
+label_preview_hotbar = Label(frame_buffer_1, text="Previous:")
 label_preview_hotbar.pack(side=LEFT, padx=1, pady=1)
-create_tooltip(label_preview_hotbar, "Previous Hotbar: The hotkey to go back to the previous hotbar.")
+create_tooltip(label_preview_hotbar, "The hotkey to go back to the previous hotbar.")
 
-entry_previous_hotbar = Entry(frame_buffer_1, width=2, validate="none")
+entry_previous_hotbar = Entry(frame_buffer_1, width=5, validate="none")
 entry_previous_hotbar.pack(side=LEFT, padx=1, pady=1)
-create_tooltip(entry_previous_hotbar, "Previous Hotbar: The hotkey to go back to the previous hotbar.")
+create_tooltip(entry_previous_hotbar, "The hotkey to go back to the previous hotbar.")
 
-label_buffer_timer = Label(frame_buffer_1, text="B. Timer:")
-label_buffer_timer.pack(side=LEFT, padx=1, pady=1)
-create_tooltip(label_buffer_timer, "Buffer Timer: Delay for the buffer to rebuff your character (Optional).")
+label_buffer_delay = Label(frame_buffer_1, text="Delay:")
+label_buffer_delay.pack(side=LEFT, padx=1, pady=1)
+create_tooltip(label_buffer_delay, "Delay to cast each buff.")
 
-entry_buffer_timer = Entry(frame_buffer_1, width=10, validate="none")
-entry_buffer_timer.pack(side=LEFT, padx=1, pady=1)
-create_tooltip(entry_buffer_timer, "Buffer Timer: Delay for the buffer to rebuff your character (Optional).")
+entry_buffer_delay = Entry(frame_buffer_1, width=6, validate="none")
+entry_buffer_delay.pack(side=LEFT, padx=1, pady=1)
+create_tooltip(entry_buffer_delay, "Delay to cast each buff.")
 
-frame_buffer_2 = Frame(root)
-frame_buffer_2.pack(fill=X, padx=1, pady=1)
+label_buffer_shortcut = Label(text="Buffer Shortcut:")
+label_buffer_shortcut.pack(padx=1, pady=1)
+create_tooltip(label_buffer_shortcut, "Shortcut to activate the Buffer.")
 
-checkbutton_gt = Checkbutton(frame_buffer_2, text="GT", variable=checkbox_var_2, command=gt_checkbutton_state)
-checkbutton_gt.pack(side=LEFT, padx=1, pady=1)
-
-label_GT_key = Label(frame_buffer_2, text="GT Key:")
-label_GT_key.pack(side=LEFT, padx=1, pady=1)
-create_tooltip(label_GT_key, "GT Key: Key to use GT")
-
-entry_GT_key = Entry(frame_buffer_2, width=2, validate="none")
-entry_GT_key.pack(side=LEFT, padx=1, pady=1)
-create_tooltip(entry_GT_key, "GT Key: Key to use GT")
-
-label_GT_timer = Label(frame_buffer_2, text="GT Timer:")
-label_GT_timer.pack(side=LEFT, padx=1, pady=1)
-create_tooltip(label_GT_timer, "GT Timer: Delay to use GT")
-
-entry_GT_timer = Entry(frame_buffer_2, width=15, validate="none")
-entry_GT_timer.pack(side=LEFT, padx=1, pady=1)
-create_tooltip(entry_GT_timer, "GT Key: Delay to use GT")
-
-frame_buffer_3 = Frame(root)
-frame_buffer_3.pack(fill=X, padx=1, pady=1)
-
-label_buffer_shortcut = Label(frame_buffer_3, text="Buffer Shortcut:")
-label_buffer_shortcut.pack(side=LEFT, padx=1, pady=1)
-create_tooltip(label_buffer_shortcut, "Buffer Shortcut: Shortcut to activate the Buffer.")
-
-entry_buffer_shortcut = Entry(frame_buffer_3, validate="none")
+entry_buffer_shortcut = Entry(validate="none")
 entry_buffer_shortcut.pack(fill=X, padx=1, pady=1)
-create_tooltip(entry_buffer_shortcut, "Buffer Shortcut: Shortcut to activate the Buffer.")
+create_tooltip(entry_buffer_shortcut, "Shortcut to activate the Buffer.")
 
 frame_buffer_4 = Frame(root)
 frame_buffer_4.pack(fill=X, padx=1, pady=1)
@@ -200,6 +173,36 @@ button_buffer_disable_enable = Button(frame_buffer_4, text="Enable", width=10)
 button_buffer_disable_enable.pack(side=RIGHT, padx=1, pady=1)
 button_buffer_disable_enable.config(command=lambda: toolControl.enable_disable_buffer(button_buffer_disable_enable))
 
+frame_buffer_2 = Frame(root)
+frame_buffer_2.pack(fill=X, padx=1, pady=1)
+
+checkbutton_gt = Checkbutton(frame_buffer_2, text="GT", variable=checkbox_var_2, command=gt_checkbutton_state)
+checkbutton_gt.pack(side=LEFT, padx=1, pady=1)
+
+label_GT_key = Label(frame_buffer_2, text="Key:")
+label_GT_key.pack(side=LEFT, padx=1, pady=1)
+create_tooltip(label_GT_key, "Key to use GT")
+
+entry_GT_key = Entry(frame_buffer_2, width=4, validate="none")
+entry_GT_key.pack(side=LEFT, padx=1, pady=1)
+create_tooltip(entry_GT_key, "Key to use GT")
+
+label_GT_hotbar = Label(frame_buffer_2, text="Hotbar:")
+label_GT_hotbar.pack(side=LEFT, padx=1, pady=1)
+create_tooltip(label_GT_hotbar, "The hotbar where your GT is.")
+
+entry_GT_hotbar = Entry(frame_buffer_2, width=4, validate="none")
+entry_GT_hotbar.pack(side=LEFT, padx=1, pady=1)
+create_tooltip(entry_GT_hotbar, "The hotbar where your GT is.")
+
+label_GT_timer = Label(frame_buffer_2, text="Delay:")
+label_GT_timer.pack(side=LEFT, padx=1, pady=1)
+create_tooltip(label_GT_timer, "Delay to use GT")
+
+entry_GT_timer = Entry(frame_buffer_2, width=5, validate="none")
+entry_GT_timer.pack(side=LEFT, padx=1, pady=1)
+create_tooltip(entry_GT_timer, "Delay to use GT")
+
 entry_alt_control_keys.insert(END, saveConfigs.open_json_config()[0])
 entry_macro_loop_key.insert(END, saveConfigs.open_json_config()[1])
 entry_macro_loop_timers.insert(END, saveConfigs.open_json_config()[2])
@@ -207,7 +210,7 @@ entry_macro_loop_shortcut.insert(END, saveConfigs.open_json_config()[3])
 entry_buffer.insert(END, saveConfigs.open_json_config()[5])
 entry_buffs_hotbar.insert(END, saveConfigs.open_json_config()[6])
 entry_previous_hotbar.insert(END, saveConfigs.open_json_config()[7])
-entry_buffer_timer.insert(END, saveConfigs.open_json_config()[8])
+entry_buffer_delay.insert(END, saveConfigs.open_json_config()[8])
 entry_buffer_shortcut.insert(END, saveConfigs.open_json_config()[9])
 entry_GT_key.insert(END, saveConfigs.open_json_config()[10])
 entry_GT_timer.insert(END, saveConfigs.open_json_config()[11])
@@ -230,8 +233,8 @@ entry_buffs_hotbar.config(validatecommand=(validation_buffer_key, "%S"))
 entry_previous_hotbar.config(validate="key")
 entry_previous_hotbar.config(validatecommand=(validation_buffer_key, "%S"))
 
-entry_buffer_timer.config(validate="key")
-entry_buffer_timer.config(validatecommand=(validation_buffer_timer, "%S"))
+entry_buffer_delay.config(validate="key")
+entry_buffer_delay.config(validatecommand=(validation_buffer_timer, "%S"))
 
 entry_GT_key.config(validate="key")
 entry_GT_key.config(validatecommand=(validation_buffer_key, "%S"))
@@ -244,8 +247,6 @@ checkbox_var.set(int(saveConfigs.open_json_config()[4]))
 miscs.multithreading(keyboardListener.listener)
 
 miscs.multithreading(lambda: macroLoop.macro_loop(checkbox_var.get()))
-
-miscs.multithreading(lambda: bufferLoop.buffer_loop(button_macro_loop_enable_disable))
 
 miscs.multithreading(lambda: bufferLoop.gt_buffer())
 

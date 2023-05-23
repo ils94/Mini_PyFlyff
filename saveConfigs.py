@@ -70,7 +70,7 @@ def save_key_configs(entry1, entry2, entry3, entry4, checkbox, function, entry5,
 
     globalVariables.previous_hotbar = entry7.get()
 
-    globalVariables.buffer_timer = entry8.get()
+    globalVariables.buffer_delay = entry8.get()
 
     keyboardListener.buffer_shortcut(entry9.get(), function2)
 

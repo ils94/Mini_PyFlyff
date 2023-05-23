@@ -20,7 +20,7 @@ buffs_hotbar = None
 
 previous_hotbar = None
 
-buffer_timer = None
+buffer_delay = None
 
 buffer_shortcut = None
 
