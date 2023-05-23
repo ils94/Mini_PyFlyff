@@ -60,7 +60,7 @@ def save_key_configs(entry1, entry2, entry3, entry4, checkbox, function, entry5,
     globalVariables.alt_control_key_list = entry1.get().split(",")
 
     globalVariables.macro_loop_keys = entry2.get().split(",")
-    globalVariables.macro_loop_key_timers = entry3.get().split(",")
+    globalVariables.macro_loop_key_delay = entry3.get().split(",")
 
     keyboardListener.set_mini_ftool_shortcut(entry4.get(), function)
 
@@ -76,7 +76,7 @@ def save_key_configs(entry1, entry2, entry3, entry4, checkbox, function, entry5,
 
     globalVariables.gt_buffer_key = entry10.get()
 
-    globalVariables.gt_timer = entry11.get()
+    globalVariables.gt_buffer_delay = entry11.get()
 
     create_json_config(entry1.get(), entry2.get(), entry3.get(), entry4.get(), checkbox, entry5.get(), entry6.get(),
                        entry7.get(), entry8.get(), entry9.get(), entry10.get(), entry11.get())

@@ -44,7 +44,9 @@ menu.add_command(label="Save Keys", command=lambda: saveConfigs.save_key_configs
                                                                                  entry_previous_hotbar,
                                                                                  entry_buffer_delay,
                                                                                  entry_buffer_shortcut,
-                                                                                 None,
+                                                                                 lambda:
+                                                                                 bufferLoop.buffer_loop(
+                                                                                     button_macro_loop_start_stop),
                                                                                  entry_GT_key,
                                                                                  entry_GT_timer))
 

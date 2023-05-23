@@ -12,7 +12,7 @@ alt_control_key_list = []
 
 macro_loop_keys = []
 
-macro_loop_key_timers = []
+macro_loop_key_delay = []
 
 buffer_keys = []
 
@@ -24,8 +24,12 @@ buffer_delay = None
 
 buffer_shortcut = None
 
+buffer_is_going = False
+
 gt_buffer = False
 
-gt_buffer_key = ""
+gt_buffer_key = None
 
-gt_timer = ""
+gt_buffer_delay = None
+
+gt_buffer_hotbar = None
