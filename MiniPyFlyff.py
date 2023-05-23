@@ -12,6 +12,7 @@ import bufferLoop
 def gt_checkbutton_state():
     if gt_checkbox_var.get() == 1:
         globalVariables.gt_buffer = True
+        miscs.multithreading(bufferLoop.gt_buffer)
     else:
         globalVariables.gt_buffer = False
 
@@ -284,7 +285,5 @@ random_delay_checkbox_var.set(int(saveConfigs.open_json_config()[4]))
 globalVariables.macro_loop_random_delay = int(saveConfigs.open_json_config()[4])
 
 miscs.multithreading(keyboardListener.listener)
-
-miscs.multithreading(lambda: bufferLoop.gt_buffer())
 
 root.mainloop()
