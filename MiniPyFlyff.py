@@ -82,41 +82,51 @@ checkbox_var_2 = IntVar()
 
 label_alt_control = Label(text="Alt Control Key(s):")
 label_alt_control.pack(fill=X, padx=1, pady=1)
+create_tooltip(label_alt_control, "Key(s) to control your Alt Client (separate each key(s) with commas)")
 
 entry_alt_control_keys = Entry(validate="none")
 entry_alt_control_keys.pack(fill=X, padx=1, pady=1)
+create_tooltip(entry_alt_control_keys, "Key(s) to control your Alt Client (separate each key(s) with commas)")
 
-frame_alt_control_save_button = Frame(root)
-frame_alt_control_save_button.pack(fill=X, padx=1, pady=1)
+frame_alt_control = Frame(root)
+frame_alt_control.pack(fill=X, padx=1, pady=1)
 
-button_alt_control_start_stop = Button(frame_alt_control_save_button, text="Enable", width=10)
-button_alt_control_start_stop.pack(side=RIGHT, padx=1, pady=1)
-button_alt_control_start_stop.config(
-    command=lambda: toolControl.enable_disable_alt_control(button_alt_control_start_stop))
+button_alt_control_enable_disable = Button(frame_alt_control, text="Enable", width=10)
+button_alt_control_enable_disable.pack(side=RIGHT, padx=1, pady=1)
+button_alt_control_enable_disable.config(
+    command=lambda: toolControl.enable_disable_alt_control(button_alt_control_enable_disable))
+create_tooltip(button_alt_control_enable_disable, "Button to disable Alt Control")
 
 label_macro_loop = Label(text="Macro Loop Key(s):")
 label_macro_loop.pack(fill=X, padx=1, pady=1)
+create_tooltip(label_macro_loop, "Key(s) for the macro loop (separate each key(s) with commas)")
 
 entry_macro_loop_key = Entry(validate="none")
 entry_macro_loop_key.pack(fill=X, padx=1, pady=1)
+create_tooltip(entry_macro_loop_key, "Key(s) for the macro loop (separate each key(s) with commas)")
 
 label_macro_loop_delays = Label(text="Macro Loop Delay(s):")
 label_macro_loop_delays.pack(fill=X, padx=1, pady=1)
+create_tooltip(label_macro_loop_delays, "Delay(s) for each key for the macro loop (separate each delay(s) with commas)")
 
 entry_macro_loop_delays = Entry(validate="none")
 entry_macro_loop_delays.pack(fill=X, padx=1, pady=1)
+create_tooltip(entry_macro_loop_delays, "Delay(s) for each key for the macro loop (separate each delay(s) with commas)")
 
 label_macro_loop_shortcut = Label(text="Macro Loop Shortcut:")
 label_macro_loop_shortcut.pack(fill=X, padx=1, pady=1)
+create_tooltip(label_macro_loop_shortcut, "Shortcut to start the macro loop")
 
 entry_macro_loop_shortcut = Entry(validate="none")
 entry_macro_loop_shortcut.pack(fill=X, padx=1, pady=1)
+create_tooltip(entry_macro_loop_shortcut, "Shortcut to start the macro loop")
 
 frame_macro_loop_checkbutton = Frame(root)
 frame_macro_loop_checkbutton.pack(fill=X, padx=1, pady=1)
 
 checkbutton_macro_loop = Checkbutton(frame_macro_loop_checkbutton, text="Random Delays", variable=checkbox_var)
 checkbutton_macro_loop.pack(side=LEFT, padx=1, pady=1)
+create_tooltip(entry_macro_loop_shortcut, "Create random delay(s) for each macro loop key(s) interaction")
 
 frame_macro_loop_buttons = Frame(root)
 frame_macro_loop_buttons.pack(fill=X, padx=1, pady=1)
@@ -124,17 +134,21 @@ frame_macro_loop_buttons.pack(fill=X, padx=1, pady=1)
 button_macro_loop_start_stop = Button(frame_macro_loop_buttons, text="Start", width=10)
 button_macro_loop_start_stop.pack(side=LEFT, padx=1, pady=1)
 button_macro_loop_start_stop.config(command=lambda: toolControl.start_stop_mini_ftool(button_macro_loop_start_stop))
+create_tooltip(button_macro_loop_start_stop, "Stop/Start the macro loop")
 
 button_macro_loop_enable_disable = Button(frame_macro_loop_buttons, text="Enable", width=10)
 button_macro_loop_enable_disable.pack(side=RIGHT, padx=1, pady=1)
 button_macro_loop_enable_disable.config(
     command=lambda: toolControl.enable_disable_mini_ftool(button_macro_loop_enable_disable))
+create_tooltip(button_macro_loop_enable_disable, "Enable/Disable the macro loop")
 
 label_buffer_keys = Label(text="Buffer Key(s):")
 label_buffer_keys.pack(fill=X, padx=1, pady=1)
+create_tooltip(label_buffer_keys, "Key(s) for each buff used (separate each key(s) with commas)")
 
 entry_buffer_keys = Entry(validate="none")
 entry_buffer_keys.pack(fill=X, padx=1, pady=1)
+create_tooltip(entry_buffer_keys, "Key(s) for each buff used (separate each key(s) with commas)")
 
 frame_buffer_1 = Frame(root)
 frame_buffer_1.pack(fill=X, padx=1, pady=1)
@@ -188,6 +202,7 @@ frame_buffer_2.pack(fill=X, padx=1, pady=1)
 
 checkbutton_gt = Checkbutton(frame_buffer_2, text="GT", variable=checkbox_var_2, command=gt_checkbutton_state)
 checkbutton_gt.pack(side=LEFT, padx=1, pady=1)
+create_tooltip(checkbutton_gt, "Mark this box to initiate the GT Buffer.")
 
 label_GT_key = Label(frame_buffer_2, text="Key:")
 label_GT_key.pack(side=LEFT, padx=1, pady=1)
