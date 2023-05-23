@@ -103,7 +103,7 @@ def gt_buffer():
         if globalVariables.gt_buffer_delay and globalVariables.gt_buffer:
 
             while countdown:
-                if globalVariables.gt_buffer:
+                if globalVariables.gt_buffer and globalVariables.gt_buffer_delay:
                     countdown = countdown - 1
                     time.sleep(1)
         else:
