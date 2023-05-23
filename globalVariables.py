@@ -8,15 +8,15 @@ alt_control_on = False
 
 macro_loop_shortcut = None
 
-alt_control_key_list = []
+alt_controller_hotkey_list = []
 
-macro_loop_keys = []
+macro_loop_hotkeys = []
 
-macro_loop_key_delay = []
+macro_loop_hotkey_delay = []
 
 macro_loop_random_delay = 0
 
-buffer_keys = []
+buffer_hotkeys = []
 
 buffs_hotbar = None
 
@@ -32,6 +32,6 @@ buffer_is_going = False
 
 gt_buffer = False
 
-gt_buffer_key = None
+gt_buffer_hotkey = None
 
 gt_buffer_delay = None

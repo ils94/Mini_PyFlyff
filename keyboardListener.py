@@ -10,7 +10,7 @@ def listener():
 
 
 def send_key(event):
-    if event.name in globalVariables.alt_control_key_list:
+    if event.name in globalVariables.alt_controller_hotkey_list:
         browserControl.alt_control_send_keys(event.name)
 
 

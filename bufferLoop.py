@@ -29,7 +29,7 @@ def buffer_loop(button1, button2, button3):
 
         gt_buffer_check = globalVariables.gt_buffer
 
-        for key in globalVariables.buffer_keys:
+        for key in globalVariables.buffer_hotkeys:
 
             buffer_countdown = globalVariables.buffer_delay
 
@@ -92,7 +92,7 @@ def buffer_loop(button1, button2, button3):
             if gt_buffer_check and not globalVariables.gt_buffer:
                 globalVariables.gt_buffer = True
 
-                miscs.multithreading(lambda: gt_buffer())
+            miscs.multithreading(lambda: gt_buffer())
 
             miscs.multithreading(lambda: macroLoop.macro_loop())
 
@@ -109,7 +109,7 @@ def gt_buffer():
 
             default_countdown = 45
 
-            windowsAPI.windows_api(globalVariables.gt_buffer_key)
+            windowsAPI.windows_api(globalVariables.gt_buffer_hotkey)
 
             if globalVariables.gt_buffer_delay:
 

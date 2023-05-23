@@ -9,7 +9,7 @@ def macro_loop():
     while True:
         try:
             if globalVariables.macro_loop_on and globalVariables.macro_loop_enable_disabled:
-                for key, timer in zip(globalVariables.macro_loop_keys, globalVariables.macro_loop_key_delay):
+                for key, timer in zip(globalVariables.macro_loop_hotkeys, globalVariables.macro_loop_hotkey_delay):
                     if globalVariables.macro_loop_on and globalVariables.macro_loop_enable_disabled:
                         windowsAPI.windows_api(key)
 
