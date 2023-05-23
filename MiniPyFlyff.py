@@ -45,8 +45,9 @@ menu.add_command(label="Save Keys", command=lambda: saveConfigs.save_key_configs
                                                                                  entry_buffer_delay,
                                                                                  entry_buffer_shortcut,
                                                                                  lambda:
-                                                                                 bufferLoop.buffer_loop(
-                                                                                     button_macro_loop_start_stop),
+                                                                                 toolControl.start_stop_buffer(
+                                                                                     button_buffer_start_stop,
+                                                                                     button_macro_loop_enable_disable),
                                                                                  entry_GT_key,
                                                                                  entry_GT_timer))
 
@@ -89,7 +90,8 @@ frame_alt_control_save_button.pack(fill=X, padx=1, pady=1)
 
 button_alt_control_start_stop = Button(frame_alt_control_save_button, text="Enable", width=10)
 button_alt_control_start_stop.pack(side=RIGHT, padx=1, pady=1)
-button_alt_control_start_stop.config(command=lambda: toolControl.start_stop_alt_control(button_alt_control_start_stop))
+button_alt_control_start_stop.config(
+    command=lambda: toolControl.enable_disable_alt_control(button_alt_control_start_stop))
 
 label_macro_loop = Label(text="Macro Loop Key(s):")
 label_macro_loop.pack(fill=X, padx=1, pady=1)
@@ -174,6 +176,11 @@ frame_buffer_4.pack(fill=X, padx=1, pady=1)
 button_buffer_disable_enable = Button(frame_buffer_4, text="Enable", width=10)
 button_buffer_disable_enable.pack(side=RIGHT, padx=1, pady=1)
 button_buffer_disable_enable.config(command=lambda: toolControl.enable_disable_buffer(button_buffer_disable_enable))
+
+button_buffer_start_stop = Button(frame_buffer_4, text="Start", width=10)
+button_buffer_start_stop.pack(side=LEFT, padx=1, pady=1)
+button_buffer_start_stop.config(
+    command=lambda: toolControl.start_stop_buffer(button_buffer_start_stop, button_macro_loop_enable_disable))
 
 frame_buffer_2 = Frame(root)
 frame_buffer_2.pack(fill=X, padx=1, pady=1)

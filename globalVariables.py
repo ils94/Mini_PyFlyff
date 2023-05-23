@@ -24,6 +24,8 @@ buffer_delay = None
 
 buffer_shortcut = None
 
+buffer_is_on = False
+
 buffer_is_going = False
 
 gt_buffer = False

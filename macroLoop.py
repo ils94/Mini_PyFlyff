@@ -24,4 +24,4 @@ def macro_loop(check):
             time.sleep(5)
             continue
 
-        time.sleep(0.1)
+        time.sleep(0.5)

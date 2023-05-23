@@ -1,7 +1,9 @@
 import globalVariables
+import bufferLoop
+import miscs
 
 
-def start_stop_alt_control(button):
+def enable_disable_alt_control(button):
     if globalVariables.alt_control_on:
         globalVariables.alt_control_on = False
         button["text"] = "Enable"
@@ -35,3 +37,13 @@ def enable_disable_buffer(button):
     else:
         globalVariables.buffer_enable_disabled = True
         button["text"] = "Disable"
+
+
+def start_stop_buffer(button, button2):
+    if globalVariables.buffer_is_on:
+        globalVariables.buffer_is_on = False
+        button["text"] = "Start"
+    elif not globalVariables.buffer_is_on and globalVariables.buffer_enable_disabled:
+        globalVariables.buffer_is_on = True
+        button["text"] = "Stop"
+        miscs.multithreading(lambda: bufferLoop.buffer_loop(button, button2))
