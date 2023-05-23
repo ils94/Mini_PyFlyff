@@ -3,7 +3,6 @@ from tkinter import Button, Label, Entry, X, LEFT, RIGHT, Frame, Checkbutton, In
 import globalVariables
 import keyboardListener
 import macroLoop
-import helpWindow
 import os
 import saveConfigs
 import toolControl
@@ -19,7 +18,7 @@ def gt_checkbutton_state():
 
 
 def create_tooltip(widget, text):
-    balloon = tix.Balloon(widget)
+    balloon = tix.Balloon(widget, initwait=1)
     balloon.bind_widget(widget, balloonmsg=text)
 
 
@@ -29,9 +28,7 @@ menu_bar = Menu(root)
 
 menu = Menu(menu_bar, tearoff=0)
 
-menu.add_command(label="Help", command=lambda: helpWindow.open_help())
-
-menu.add_command(label="Save Keys", command=lambda: saveConfigs.save_key_configs(entry_alt_control_keys,
+menu.add_command(label="Save Config", command=lambda: saveConfigs.save_key_configs(entry_alt_control_keys,
                                                                                  entry_macro_loop_key,
                                                                                  entry_macro_loop_delays,
                                                                                  entry_macro_loop_shortcut,
@@ -126,7 +123,7 @@ frame_macro_loop_checkbutton.pack(fill=X, padx=1, pady=1)
 
 checkbutton_macro_loop = Checkbutton(frame_macro_loop_checkbutton, text="Random Delays", variable=checkbox_var)
 checkbutton_macro_loop.pack(side=LEFT, padx=1, pady=1)
-create_tooltip(entry_macro_loop_shortcut, "Create random delay(s) for each macro loop key(s) interaction")
+create_tooltip(checkbutton_macro_loop, "Create random delay(s) for each macro loop key(s) interaction")
 
 frame_macro_loop_buttons = Frame(root)
 frame_macro_loop_buttons.pack(fill=X, padx=1, pady=1)
@@ -191,11 +188,13 @@ frame_buffer_4.pack(fill=X, padx=1, pady=1)
 button_buffer_disable_enable = Button(frame_buffer_4, text="Enable", width=10)
 button_buffer_disable_enable.pack(side=RIGHT, padx=1, pady=1)
 button_buffer_disable_enable.config(command=lambda: toolControl.enable_disable_buffer(button_buffer_disable_enable))
+create_tooltip(button_buffer_disable_enable, "Enable/Disable the Buffer")
 
 button_buffer_start_stop = Button(frame_buffer_4, text="Start", width=10)
 button_buffer_start_stop.pack(side=LEFT, padx=1, pady=1)
 button_buffer_start_stop.config(
     command=lambda: toolControl.start_stop_buffer(button_buffer_start_stop, button_macro_loop_enable_disable))
+create_tooltip(button_buffer_start_stop, "Start/Stop the Buffer")
 
 frame_buffer_2 = Frame(root)
 frame_buffer_2.pack(fill=X, padx=1, pady=1)
