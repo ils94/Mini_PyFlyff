@@ -48,4 +48,5 @@ def start_stop_buffer(button, button2, button3):
     elif not globalVariables.buffer_is_on and globalVariables.buffer_enable_disabled:
         globalVariables.buffer_is_on = True
         button["text"] = "Stop"
+
         miscs.multithreading(lambda: bufferLoop.buffer_loop(button, button2, button3))
