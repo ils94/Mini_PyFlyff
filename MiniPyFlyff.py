@@ -33,13 +33,13 @@ menu.add_command(label="Help", command=lambda: helpWindow.open_help())
 
 menu.add_command(label="Save Keys", command=lambda: saveConfigs.save_key_configs(entry_alt_control_keys,
                                                                                  entry_macro_loop_key,
-                                                                                 entry_macro_loop_timers,
+                                                                                 entry_macro_loop_delays,
                                                                                  entry_macro_loop_shortcut,
                                                                                  checkbox_var.get(),
                                                                                  lambda:
                                                                                  toolControl.start_stop_mini_ftool(
                                                                                      button_macro_loop_start_stop),
-                                                                                 entry_buffer,
+                                                                                 entry_buffer_keys,
                                                                                  entry_buffs_hotbar,
                                                                                  entry_previous_hotbar,
                                                                                  entry_buffer_delay,
@@ -49,7 +49,8 @@ menu.add_command(label="Save Keys", command=lambda: saveConfigs.save_key_configs
                                                                                      button_buffer_start_stop,
                                                                                      button_macro_loop_enable_disable),
                                                                                  entry_GT_key,
-                                                                                 entry_GT_timer))
+                                                                                 entry_GT_delay,
+                                                                                 entry_GT_hotbar))
 
 menu_bar.add_cascade(label="Menu", menu=menu)
 
@@ -70,10 +71,10 @@ if os.path.isfile("icon/PyFlyff.ico"):
     root.iconbitmap("icon/PyFlyff.ico")
 root.resizable(False, False)
 
-validation_timers = root.register(miscs.validate_input_timers)
+validation_delays = root.register(miscs.validate_input_timers)
 validation_keys = root.register(miscs.validate_input_keys)
 
-validation_buffer_timer = root.register(miscs.validate_input_buffer_timer)
+validation_buffer_delays = root.register(miscs.validate_input_buffer_timer)
 validation_buffer_key = root.register(miscs.validate_input_buffer_key)
 
 checkbox_var = IntVar()
@@ -99,11 +100,11 @@ label_macro_loop.pack(fill=X, padx=1, pady=1)
 entry_macro_loop_key = Entry(validate="none")
 entry_macro_loop_key.pack(fill=X, padx=1, pady=1)
 
-label_macro_loop_timers = Label(text="Macro Loop Delay(s):")
-label_macro_loop_timers.pack(fill=X, padx=1, pady=1)
+label_macro_loop_delays = Label(text="Macro Loop Delay(s):")
+label_macro_loop_delays.pack(fill=X, padx=1, pady=1)
 
-entry_macro_loop_timers = Entry(validate="none")
-entry_macro_loop_timers.pack(fill=X, padx=1, pady=1)
+entry_macro_loop_delays = Entry(validate="none")
+entry_macro_loop_delays.pack(fill=X, padx=1, pady=1)
 
 label_macro_loop_shortcut = Label(text="Macro Loop Shortcut:")
 label_macro_loop_shortcut.pack(fill=X, padx=1, pady=1)
@@ -129,11 +130,11 @@ button_macro_loop_enable_disable.pack(side=RIGHT, padx=1, pady=1)
 button_macro_loop_enable_disable.config(
     command=lambda: toolControl.enable_disable_mini_ftool(button_macro_loop_enable_disable))
 
-label_buffer = Label(text="Buffer Key(s):")
-label_buffer.pack(fill=X, padx=1, pady=1)
+label_buffer_keys = Label(text="Buffer Key(s):")
+label_buffer_keys.pack(fill=X, padx=1, pady=1)
 
-entry_buffer = Entry(validate="none")
-entry_buffer.pack(fill=X, padx=1, pady=1)
+entry_buffer_keys = Entry(validate="none")
+entry_buffer_keys.pack(fill=X, padx=1, pady=1)
 
 frame_buffer_1 = Frame(root)
 frame_buffer_1.pack(fill=X, padx=1, pady=1)
@@ -204,25 +205,26 @@ entry_GT_hotbar = Entry(frame_buffer_2, width=4, validate="none")
 entry_GT_hotbar.pack(side=LEFT, padx=1, pady=1)
 create_tooltip(entry_GT_hotbar, "The hotbar where your GT is.")
 
-label_GT_timer = Label(frame_buffer_2, text="Delay:")
-label_GT_timer.pack(side=LEFT, padx=1, pady=1)
-create_tooltip(label_GT_timer, "Delay to use GT")
+label_GT_delay = Label(frame_buffer_2, text="Delay:")
+label_GT_delay.pack(side=LEFT, padx=1, pady=1)
+create_tooltip(label_GT_delay, "Delay to use GT")
 
-entry_GT_timer = Entry(frame_buffer_2, width=5, validate="none")
-entry_GT_timer.pack(side=LEFT, padx=1, pady=1)
-create_tooltip(entry_GT_timer, "Delay to use GT")
+entry_GT_delay = Entry(frame_buffer_2, width=5, validate="none")
+entry_GT_delay.pack(side=LEFT, padx=1, pady=1)
+create_tooltip(entry_GT_delay, "Delay to use GT")
 
 entry_alt_control_keys.insert(END, saveConfigs.open_json_config()[0])
 entry_macro_loop_key.insert(END, saveConfigs.open_json_config()[1])
-entry_macro_loop_timers.insert(END, saveConfigs.open_json_config()[2])
+entry_macro_loop_delays.insert(END, saveConfigs.open_json_config()[2])
 entry_macro_loop_shortcut.insert(END, saveConfigs.open_json_config()[3])
-entry_buffer.insert(END, saveConfigs.open_json_config()[5])
+entry_buffer_keys.insert(END, saveConfigs.open_json_config()[5])
 entry_buffs_hotbar.insert(END, saveConfigs.open_json_config()[6])
 entry_previous_hotbar.insert(END, saveConfigs.open_json_config()[7])
 entry_buffer_delay.insert(END, saveConfigs.open_json_config()[8])
 entry_buffer_shortcut.insert(END, saveConfigs.open_json_config()[9])
 entry_GT_key.insert(END, saveConfigs.open_json_config()[10])
-entry_GT_timer.insert(END, saveConfigs.open_json_config()[11])
+entry_GT_delay.insert(END, saveConfigs.open_json_config()[11])
+entry_GT_hotbar.insert(END, saveConfigs.open_json_config()[12])
 
 entry_alt_control_keys.config(validate="key")
 entry_alt_control_keys.config(validatecommand=(validation_keys, "%S"))
@@ -230,11 +232,11 @@ entry_alt_control_keys.config(validatecommand=(validation_keys, "%S"))
 entry_macro_loop_key.config(validate="key")
 entry_macro_loop_key.config(validatecommand=(validation_keys, "%S"))
 
-entry_macro_loop_timers.config(validate="key")
-entry_macro_loop_timers.config(validatecommand=(validation_timers, "%S"))
+entry_macro_loop_delays.config(validate="key")
+entry_macro_loop_delays.config(validatecommand=(validation_delays, "%S"))
 
-entry_buffer.config(validate="key")
-entry_buffer.config(validatecommand=(validation_keys, "%S"))
+entry_buffer_keys.config(validate="key")
+entry_buffer_keys.config(validatecommand=(validation_keys, "%S"))
 
 entry_buffs_hotbar.config(validate="key")
 entry_buffs_hotbar.config(validatecommand=(validation_buffer_key, "%S"))
@@ -243,13 +245,16 @@ entry_previous_hotbar.config(validate="key")
 entry_previous_hotbar.config(validatecommand=(validation_buffer_key, "%S"))
 
 entry_buffer_delay.config(validate="key")
-entry_buffer_delay.config(validatecommand=(validation_buffer_timer, "%S"))
+entry_buffer_delay.config(validatecommand=(validation_buffer_delays, "%S"))
 
 entry_GT_key.config(validate="key")
 entry_GT_key.config(validatecommand=(validation_buffer_key, "%S"))
 
-entry_GT_timer.config(validate="key")
-entry_GT_timer.config(validatecommand=(validation_buffer_timer, "%S"))
+entry_GT_delay.config(validate="key")
+entry_GT_delay.config(validatecommand=(validation_buffer_delays, "%S"))
+
+entry_GT_hotbar.config(validate="key")
+entry_GT_hotbar.config(validatecommand=(validation_buffer_key, "%S"))
 
 checkbox_var.set(int(saveConfigs.open_json_config()[4]))
 

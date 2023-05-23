@@ -5,7 +5,7 @@ import keyboardListener
 
 
 def create_json_config(entry1, entry2, entry3, entry4, checkbox_value, entry5, entry6, entry7, entry8, entry9, entry10,
-                       entry11):
+                       entry11, entry12):
     data = {
         "value1": entry1,
         "value2": entry2,
@@ -18,7 +18,8 @@ def create_json_config(entry1, entry2, entry3, entry4, checkbox_value, entry5, e
         "value9": entry8,
         "value10": entry9,
         "value11": entry10,
-        "value12": entry11
+        "value12": entry11,
+        "value13": entry12
     }
 
     with open("config.json", "w") as json_file:
@@ -45,18 +46,19 @@ def open_json_config():
                 value10 = data['value10']
                 value11 = data['value11']
                 value12 = data['value12']
+                value13 = data['value13']
 
-                return value1, value2, value3, value4, value5, value6, value7, value8, value9, value10, value11, value12
+                return value1, value2, value3, value4, value5, value6, value7, value8, value9, value10, value11, value12, value13
         else:
-            return "", "", "", "", 0, "", "", "", "", "", "", ""
+            return "", "", "", "", 0, "", "", "", "", "", "", "", ""
     except Exception as e:
         print(e)
         os.remove("config.json")
-        return "", "", "", "", 0, "", "", "", "", "", "", ""
+        return "", "", "", "", 0, "", "", "", "", "", "", "", ""
 
 
 def save_key_configs(entry1, entry2, entry3, entry4, checkbox, function, entry5, entry6, entry7, entry8, entry9,
-                     function2, entry10, entry11):
+                     function2, entry10, entry11, entry12):
     globalVariables.alt_control_key_list = entry1.get().split(",")
 
     globalVariables.macro_loop_keys = entry2.get().split(",")
@@ -78,5 +80,7 @@ def save_key_configs(entry1, entry2, entry3, entry4, checkbox, function, entry5,
 
     globalVariables.gt_buffer_delay = entry11.get()
 
+    globalVariables.gt_buffer_hotbar = entry12.get()
+
     create_json_config(entry1.get(), entry2.get(), entry3.get(), entry4.get(), checkbox, entry5.get(), entry6.get(),
-                       entry7.get(), entry8.get(), entry9.get(), entry10.get(), entry11.get())
+                       entry7.get(), entry8.get(), entry9.get(), entry10.get(), entry11.get(), entry12.get())
