@@ -14,6 +14,8 @@ macro_loop_keys = []
 
 macro_loop_key_delay = []
 
+macro_loop_random_delay = 0
+
 buffer_keys = []
 
 buffs_hotbar = None

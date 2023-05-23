@@ -1,26 +1,38 @@
 import time
 import windowsAPI
 import globalVariables
-import toolControl
+import macroLoop
+import miscs
 
-macro_loop_check = False
+macro_loop_on_check = None
+
+macro_loop_enable_disable_check = None
 
 gt_buffer_check = False
 
 
-def buffer_loop(button, button2):
-    global macro_loop_check
+def buffer_loop(button1, button2, button3):
+    global macro_loop_on_check
     global gt_buffer_check
+    global macro_loop_enable_disable_check
 
     if globalVariables.buffer_enable_disabled and globalVariables.buffer_is_on:
+
+        macro_loop_on_check = globalVariables.macro_loop_on
+
+        macro_loop_enable_disable_check = globalVariables.macro_loop_enable_disabled
 
         for key in globalVariables.buffer_keys:
 
             if globalVariables.buffer_enable_disabled and globalVariables.buffer_is_on:
 
-                if globalVariables.macro_loop_on:
-                    macro_loop_check = True
-                    toolControl.start_stop_macro_loop(button2)
+                if macro_loop_on_check:
+                    globalVariables.macro_loop_on = False
+                    button2["text"] = "Start"
+
+                if macro_loop_enable_disable_check:
+                    globalVariables.macro_loop_enable_disabled = False
+                    button3["text"] = "Enable"
 
                 if globalVariables.gt_buffer:
                     gt_buffer_check = True
@@ -35,13 +47,15 @@ def buffer_loop(button, button2):
                 else:
                     time.sleep(3)
 
-        if globalVariables.buffer_enable_disabled and globalVariables.buffer_is_on:
+        if macro_loop_on_check and not globalVariables.macro_loop_on:
+            globalVariables.macro_loop_on = True
+            button2["text"] = "Stop"
 
-            if macro_loop_check:
-                toolControl.start_stop_macro_loop(button2)
+        if macro_loop_enable_disable_check and not globalVariables.macro_loop_enable_disabled:
+            globalVariables.macro_loop_enable_disabled = True
+            button3["text"] = "Disable"
 
-            if gt_buffer_check:
-                globalVariables.gt_buffer = True
+            miscs.multithreading(lambda: macroLoop.macro_loop())
 
         globalVariables.buffer_is_going = False
 
@@ -49,7 +63,7 @@ def buffer_loop(button, button2):
 
         globalVariables.buffer_is_on = False
 
-        button["text"] = "Start"
+        button1["text"] = "Start"
 
 
 def gt_buffer():

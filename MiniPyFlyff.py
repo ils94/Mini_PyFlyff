@@ -2,7 +2,6 @@ from tkinter import Button, Label, Entry, X, LEFT, RIGHT, Frame, Checkbutton, In
 
 import globalVariables
 import keyboardListener
-import macroLoop
 import os
 import saveConfigs
 import toolControl
@@ -11,14 +10,21 @@ import bufferLoop
 
 
 def gt_checkbutton_state():
-    if checkbox_var_2.get() == 1:
+    if gt_checkbox_var.get() == 1:
         globalVariables.gt_buffer = True
     else:
         globalVariables.gt_buffer = False
 
 
+def random_delay_checkbutton_state():
+    if random_delay_checkbox_var.get() == 1:
+        globalVariables.macro_loop_random_delay = 1
+    else:
+        globalVariables.macro_loop_random_delay = 0
+
+
 def create_tooltip(widget, text):
-    balloon = tix.Balloon(widget, initwait=1)
+    balloon = tix.Balloon(widget, initwait=300)
     balloon.bind_widget(widget, balloonmsg=text)
 
 
@@ -32,7 +38,7 @@ menu.add_command(label="Save Config", command=lambda: saveConfigs.save_key_confi
                                                                                    entry_macro_loop_key,
                                                                                    entry_macro_loop_delays,
                                                                                    entry_macro_loop_shortcut,
-                                                                                   checkbox_var.get(),
+                                                                                   random_delay_checkbox_var.get(),
                                                                                    lambda:
                                                                                    toolControl.start_stop_macro_loop(
                                                                                        button_macro_loop_start_stop),
@@ -44,7 +50,8 @@ menu.add_command(label="Save Config", command=lambda: saveConfigs.save_key_confi
                                                                                    lambda:
                                                                                    toolControl.start_stop_buffer(
                                                                                        button_buffer_start_stop,
-                                                                                       button_macro_loop_start_stop),
+                                                                                       button_macro_loop_start_stop,
+                                                                                       button_macro_loop_enable_disable),
                                                                                    entry_GT_key,
                                                                                    entry_GT_delay,
                                                                                    entry_GT_hotbar))
@@ -74,8 +81,8 @@ validation_keys = root.register(miscs.validate_input_keys)
 validation_buffer_delays = root.register(miscs.validate_input_buffer_timer)
 validation_buffer_key = root.register(miscs.validate_input_buffer_key)
 
-checkbox_var = IntVar()
-checkbox_var_2 = IntVar()
+random_delay_checkbox_var = IntVar()
+gt_checkbox_var = IntVar()
 
 label_alt_control = Label(text="Alt Control Key(s):")
 label_alt_control.pack(fill=X, padx=1, pady=1)
@@ -121,7 +128,8 @@ create_tooltip(entry_macro_loop_shortcut, "Shortcut to start the macro loop")
 frame_macro_loop_checkbutton = Frame(root)
 frame_macro_loop_checkbutton.pack(fill=X, padx=1, pady=1)
 
-checkbutton_macro_loop = Checkbutton(frame_macro_loop_checkbutton, text="Random Delays", variable=checkbox_var)
+checkbutton_macro_loop = Checkbutton(frame_macro_loop_checkbutton, text="Random Delays",
+                                     variable=random_delay_checkbox_var, command=random_delay_checkbutton_state)
 checkbutton_macro_loop.pack(side=LEFT, padx=1, pady=1)
 create_tooltip(checkbutton_macro_loop, "Create random delay(s) for each macro loop key(s) interaction")
 
@@ -193,13 +201,14 @@ create_tooltip(button_buffer_disable_enable, "Enable/Disable the Buffer")
 button_buffer_start_stop = Button(frame_buffer_4, text="Start", width=10)
 button_buffer_start_stop.pack(side=LEFT, padx=1, pady=1)
 button_buffer_start_stop.config(
-    command=lambda: toolControl.start_stop_buffer(button_buffer_start_stop, button_macro_loop_start_stop))
+    command=lambda: toolControl.start_stop_buffer(button_buffer_start_stop, button_macro_loop_start_stop,
+                                                  button_macro_loop_enable_disable))
 create_tooltip(button_buffer_start_stop, "Start/Stop the Buffer")
 
 frame_buffer_2 = Frame(root)
 frame_buffer_2.pack(fill=X, padx=1, pady=1)
 
-checkbutton_gt = Checkbutton(frame_buffer_2, text="GT", variable=checkbox_var_2, command=gt_checkbutton_state)
+checkbutton_gt = Checkbutton(frame_buffer_2, text="GT", variable=gt_checkbox_var, command=gt_checkbutton_state)
 checkbutton_gt.pack(side=LEFT, padx=1, pady=1)
 create_tooltip(checkbutton_gt, "Mark this box to initiate the GT Buffer.")
 
@@ -270,11 +279,11 @@ entry_GT_delay.config(validatecommand=(validation_buffer_delays, "%S"))
 entry_GT_hotbar.config(validate="key")
 entry_GT_hotbar.config(validatecommand=(validation_buffer_key, "%S"))
 
-checkbox_var.set(int(saveConfigs.open_json_config()[4]))
+random_delay_checkbox_var.set(int(saveConfigs.open_json_config()[4]))
+
+globalVariables.macro_loop_random_delay = int(saveConfigs.open_json_config()[4])
 
 miscs.multithreading(keyboardListener.listener)
-
-# miscs.multithreading(lambda: macroLoop.macro_loop(checkbox_var.get()))
 
 miscs.multithreading(lambda: bufferLoop.gt_buffer())
 

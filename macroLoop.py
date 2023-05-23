@@ -5,7 +5,7 @@ import globalVariables
 from tkinter import messagebox
 
 
-def macro_loop(check):
+def macro_loop():
     while True:
         try:
             if globalVariables.macro_loop_on and globalVariables.macro_loop_enable_disabled:
@@ -13,12 +13,12 @@ def macro_loop(check):
                     if globalVariables.macro_loop_on and globalVariables.macro_loop_enable_disabled:
                         windowsAPI.windows_api(key)
 
-                        if check == 1:
+                        if globalVariables.macro_loop_random_delay == 1:
                             time.sleep(random.uniform(0, float(timer)))
                         else:
                             time.sleep(float(timer))
 
-            if not globalVariables.macro_loop_enable_disabled:
+            if not globalVariables.macro_loop_enable_disabled or not globalVariables.macro_loop_on:
                 break
 
         except Exception as e:
