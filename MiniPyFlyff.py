@@ -29,25 +29,25 @@ menu_bar = Menu(root)
 menu = Menu(menu_bar, tearoff=0)
 
 menu.add_command(label="Save Config", command=lambda: saveConfigs.save_key_configs(entry_alt_control_keys,
-                                                                                 entry_macro_loop_key,
-                                                                                 entry_macro_loop_delays,
-                                                                                 entry_macro_loop_shortcut,
-                                                                                 checkbox_var.get(),
-                                                                                 lambda:
-                                                                                 toolControl.start_stop_mini_ftool(
-                                                                                     button_macro_loop_start_stop),
-                                                                                 entry_buffer_keys,
-                                                                                 entry_buffs_hotbar,
-                                                                                 entry_previous_hotbar,
-                                                                                 entry_buffer_delay,
-                                                                                 entry_buffer_shortcut,
-                                                                                 lambda:
-                                                                                 toolControl.start_stop_buffer(
-                                                                                     button_buffer_start_stop,
-                                                                                     button_macro_loop_enable_disable),
-                                                                                 entry_GT_key,
-                                                                                 entry_GT_delay,
-                                                                                 entry_GT_hotbar))
+                                                                                   entry_macro_loop_key,
+                                                                                   entry_macro_loop_delays,
+                                                                                   entry_macro_loop_shortcut,
+                                                                                   checkbox_var.get(),
+                                                                                   lambda:
+                                                                                   toolControl.start_stop_macro_loop(
+                                                                                       button_macro_loop_start_stop),
+                                                                                   entry_buffer_keys,
+                                                                                   entry_buffs_hotbar,
+                                                                                   entry_previous_hotbar,
+                                                                                   entry_buffer_delay,
+                                                                                   entry_buffer_shortcut,
+                                                                                   lambda:
+                                                                                   toolControl.start_stop_buffer(
+                                                                                       button_buffer_start_stop,
+                                                                                       button_macro_loop_start_stop),
+                                                                                   entry_GT_key,
+                                                                                   entry_GT_delay,
+                                                                                   entry_GT_hotbar))
 
 menu_bar.add_cascade(label="Menu", menu=menu)
 
@@ -130,13 +130,13 @@ frame_macro_loop_buttons.pack(fill=X, padx=1, pady=1)
 
 button_macro_loop_start_stop = Button(frame_macro_loop_buttons, text="Start", width=10)
 button_macro_loop_start_stop.pack(side=LEFT, padx=1, pady=1)
-button_macro_loop_start_stop.config(command=lambda: toolControl.start_stop_mini_ftool(button_macro_loop_start_stop))
+button_macro_loop_start_stop.config(command=lambda: toolControl.start_stop_macro_loop(button_macro_loop_start_stop))
 create_tooltip(button_macro_loop_start_stop, "Stop/Start the macro loop")
 
 button_macro_loop_enable_disable = Button(frame_macro_loop_buttons, text="Enable", width=10)
 button_macro_loop_enable_disable.pack(side=RIGHT, padx=1, pady=1)
 button_macro_loop_enable_disable.config(
-    command=lambda: toolControl.enable_disable_mini_ftool(button_macro_loop_enable_disable))
+    command=lambda: toolControl.enable_disable_macro_loop(button_macro_loop_enable_disable))
 create_tooltip(button_macro_loop_enable_disable, "Enable/Disable the macro loop")
 
 label_buffer_keys = Label(text="Buffer Key(s):")
@@ -193,7 +193,7 @@ create_tooltip(button_buffer_disable_enable, "Enable/Disable the Buffer")
 button_buffer_start_stop = Button(frame_buffer_4, text="Start", width=10)
 button_buffer_start_stop.pack(side=LEFT, padx=1, pady=1)
 button_buffer_start_stop.config(
-    command=lambda: toolControl.start_stop_buffer(button_buffer_start_stop, button_macro_loop_enable_disable))
+    command=lambda: toolControl.start_stop_buffer(button_buffer_start_stop, button_macro_loop_start_stop))
 create_tooltip(button_buffer_start_stop, "Start/Stop the Buffer")
 
 frame_buffer_2 = Frame(root)
@@ -274,7 +274,7 @@ checkbox_var.set(int(saveConfigs.open_json_config()[4]))
 
 miscs.multithreading(keyboardListener.listener)
 
-miscs.multithreading(lambda: macroLoop.macro_loop(checkbox_var.get()))
+# miscs.multithreading(lambda: macroLoop.macro_loop(checkbox_var.get()))
 
 miscs.multithreading(lambda: bufferLoop.gt_buffer())
 

@@ -3,13 +3,13 @@ import windowsAPI
 import globalVariables
 import toolControl
 
-mini_ftool_check = False
+macro_loop_check = False
 
 gt_buffer_check = False
 
 
 def buffer_loop(button, button2):
-    global mini_ftool_check
+    global macro_loop_check
     global gt_buffer_check
 
     if globalVariables.buffer_enable_disabled and globalVariables.buffer_is_on:
@@ -18,9 +18,9 @@ def buffer_loop(button, button2):
 
             if globalVariables.buffer_enable_disabled and globalVariables.buffer_is_on:
 
-                if globalVariables.macro_loop_enable_disabled:
-                    mini_ftool_check = True
-                    toolControl.enable_disable_mini_ftool(button2)
+                if globalVariables.macro_loop_on:
+                    macro_loop_check = True
+                    toolControl.start_stop_macro_loop(button2)
 
                 if globalVariables.gt_buffer:
                     gt_buffer_check = True
@@ -37,8 +37,8 @@ def buffer_loop(button, button2):
 
         if globalVariables.buffer_enable_disabled and globalVariables.buffer_is_on:
 
-            if mini_ftool_check:
-                toolControl.enable_disable_mini_ftool(button2)
+            if macro_loop_check:
+                toolControl.start_stop_macro_loop(button2)
 
             if gt_buffer_check:
                 globalVariables.gt_buffer = True
@@ -54,11 +54,15 @@ def buffer_loop(button, button2):
 
 def gt_buffer():
     while True:
-        if globalVariables.gt_buffer and globalVariables.gt_buffer_delay:
+        if globalVariables.gt_buffer:
             windowsAPI.windows_api(globalVariables.gt_buffer_hotbar)
             time.sleep(1)
             windowsAPI.windows_api(globalVariables.gt_buffer_key)
 
-            time.sleep(float(globalVariables.gt_buffer_delay))
+            if globalVariables.gt_buffer_delay:
+
+                time.sleep(float(globalVariables.gt_buffer_delay))
+            else:
+                time.sleep(45)
 
         time.sleep(0.5)

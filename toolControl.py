@@ -12,7 +12,7 @@ def enable_disable_alt_control(button):
         button["text"] = "Disable"
 
 
-def start_stop_mini_ftool(button):
+def start_stop_macro_loop(button):
     if globalVariables.macro_loop_on:
         globalVariables.macro_loop_on = False
         button["text"] = "Start"
@@ -21,7 +21,7 @@ def start_stop_mini_ftool(button):
         button["text"] = "Stop"
 
 
-def enable_disable_mini_ftool(button):
+def enable_disable_macro_loop(button):
     if globalVariables.macro_loop_enable_disabled:
         globalVariables.macro_loop_enable_disabled = False
         button["text"] = "Enable"

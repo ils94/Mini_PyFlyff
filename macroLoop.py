@@ -17,6 +17,10 @@ def macro_loop(check):
                             time.sleep(random.uniform(0, float(timer)))
                         else:
                             time.sleep(float(timer))
+
+            if not globalVariables.macro_loop_enable_disabled:
+                break
+
         except Exception as e:
             messagebox.showerror("Error", "There is something wrong with the Mini Ftool Timers. "
                                           "Stop the loop and fix it."
