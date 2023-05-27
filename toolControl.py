@@ -5,11 +5,11 @@ import macroLoop
 
 
 def enable_disable_alt_control(button):
-    if globalVariables.alt_control_on:
-        globalVariables.alt_control_on = False
+    if globalVariables.alt_controller_on:
+        globalVariables.alt_controller_on = False
         button["text"] = "Enable"
     else:
-        globalVariables.alt_control_on = True
+        globalVariables.alt_controller_on = True
         button["text"] = "Disable"
 
 

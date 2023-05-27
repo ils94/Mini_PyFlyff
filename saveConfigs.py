@@ -62,7 +62,7 @@ def save_key_configs(entry1, entry2, entry3, entry4, checkbox, function, entry5,
     globalVariables.macro_loop_hotkeys = entry2.get().split(",")
     globalVariables.macro_loop_hotkey_delay = entry3.get().split(",")
 
-    keyboardListener.set_mini_ftool_shortcut(entry4.get(), function)
+    keyboardListener.set_macro_loop_shortcut(entry4.get(), function)
 
     globalVariables.buffer_hotkeys = entry5.get().split(",")
 
@@ -72,7 +72,7 @@ def save_key_configs(entry1, entry2, entry3, entry4, checkbox, function, entry5,
 
     globalVariables.buffer_delay = entry8.get()
 
-    keyboardListener.buffer_shortcut(entry9.get(), function2)
+    keyboardListener.set_buffer_shortcut(entry9.get(), function2)
 
     globalVariables.gt_buffer_hotkey = entry10.get()
 

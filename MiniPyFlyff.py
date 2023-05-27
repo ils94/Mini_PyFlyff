@@ -1,4 +1,4 @@
-from tkinter import Button, Label, Entry, X, LEFT, RIGHT, Frame, Checkbutton, IntVar, Menu, END, tix
+from tkinter import Button, Label, Entry, X, LEFT, RIGHT, LabelFrame, Frame, Checkbutton, IntVar, Menu, END, tix
 
 import globalVariables
 import keyboardListener
@@ -69,7 +69,7 @@ screen_height = root.winfo_screenheight()
 x = (screen_width / 2) - (window_width / 2)
 y = (screen_height / 2) - (window_height / 2)
 
-root.geometry("260x430+" + str(int(x)) + "+" + str(int(y)))
+root.geometry("262x465+" + str(int(x)) + "+" + str(int(y)))
 root.title("Mini PyFlyff")
 if os.path.isfile("icon/PyFlyff.ico"):
     root.iconbitmap("icon/PyFlyff.ico")
@@ -84,50 +84,56 @@ validation_buffer_key = root.register(miscs.validate_input_buffer_key)
 random_delay_checkbox_var = IntVar()
 gt_checkbox_var = IntVar()
 
-label_alt_controller = Label(text="Alt Controller Hotkey(s):")
+label_frame_1 = LabelFrame(root)
+label_frame_1.pack(fill=X, padx=2, pady=2)
+
+label_alt_controller = Label(label_frame_1, text="Alt Controller Hotkey(s):")
 label_alt_controller.pack(fill=X, padx=1, pady=1)
 create_tooltip(label_alt_controller, "Hotkey(s) to control your Alt Client (separate each hotkey(s) with commas).")
 
-entry_alt_controller_hotkeys = Entry(validate="none")
+entry_alt_controller_hotkeys = Entry(label_frame_1, validate="none")
 entry_alt_controller_hotkeys.pack(fill=X, padx=1, pady=1)
 create_tooltip(entry_alt_controller_hotkeys, "Hotkey(s) to control your Alt Client (separate each hotkey(s) with commas).")
 
-frame_alt_controller = Frame(root)
-frame_alt_controller.pack(fill=X, padx=1, pady=1)
+frame_alt_controller_button = Frame(label_frame_1)
+frame_alt_controller_button.pack(fill=X, padx=1, pady=1)
 
-button_alt_controller_enable_disable = Button(frame_alt_controller, text="Enable", width=10)
+button_alt_controller_enable_disable = Button(frame_alt_controller_button, text="Enable", width=10)
 button_alt_controller_enable_disable.pack(side=RIGHT, padx=1, pady=1)
 button_alt_controller_enable_disable.config(
     command=lambda: toolControl.enable_disable_alt_control(button_alt_controller_enable_disable))
 create_tooltip(button_alt_controller_enable_disable, "Button to Disable/Enable Alt Controller.")
 
-label_macro_loop = Label(text="Macro Loop Key(s):")
+label_frame_2 = LabelFrame(root)
+label_frame_2.pack(fill=X, padx=2, pady=2)
+
+label_macro_loop = Label(label_frame_2, text="Macro Loop Key(s):")
 label_macro_loop.pack(fill=X, padx=1, pady=1)
 create_tooltip(label_macro_loop, "Hotkey(s) for the Macro Loop (separate each hotkey(s) with commas).")
 
-entry_macro_loop_hotkey = Entry(validate="none")
+entry_macro_loop_hotkey = Entry(label_frame_2, validate="none")
 entry_macro_loop_hotkey.pack(fill=X, padx=1, pady=1)
 create_tooltip(entry_macro_loop_hotkey, "Hotkey(s) for the Macro Loop (separate each hotkey(s) with commas).")
 
-label_macro_loop_delays = Label(text="Macro Loop Delay(s):")
+label_macro_loop_delays = Label(label_frame_2, text="Macro Loop Delay(s):")
 label_macro_loop_delays.pack(fill=X, padx=1, pady=1)
 create_tooltip(label_macro_loop_delays,
                "Delay(s) for each hotkey for the Macro Loop (separate each delay(s) with commas).")
 
-entry_macro_loop_delays = Entry(validate="none")
+entry_macro_loop_delays = Entry(label_frame_2, validate="none")
 entry_macro_loop_delays.pack(fill=X, padx=1, pady=1)
 create_tooltip(entry_macro_loop_delays,
                "Delay(s) for each hotkey for the Macro Loop (separate each delay(s) with commas).")
 
-label_macro_loop_shortcut = Label(text="Macro Loop Shortcut:")
+label_macro_loop_shortcut = Label(label_frame_2, text="Macro Loop Shortcut:")
 label_macro_loop_shortcut.pack(fill=X, padx=1, pady=1)
 create_tooltip(label_macro_loop_shortcut, "Shortcut to Start/Stop the Macro Loop.")
 
-entry_macro_loop_shortcut = Entry(validate="none")
+entry_macro_loop_shortcut = Entry(label_frame_2, validate="none")
 entry_macro_loop_shortcut.pack(fill=X, padx=1, pady=1)
 create_tooltip(entry_macro_loop_shortcut, "Shortcut to Start/Stop the Macro Loop.")
 
-frame_macro_loop_checkbutton = Frame(root)
+frame_macro_loop_checkbutton = Frame(label_frame_2)
 frame_macro_loop_checkbutton.pack(fill=X, padx=1, pady=1)
 
 checkbutton_macro_loop = Checkbutton(frame_macro_loop_checkbutton, text="Random Delays",
@@ -135,7 +141,7 @@ checkbutton_macro_loop = Checkbutton(frame_macro_loop_checkbutton, text="Random 
 checkbutton_macro_loop.pack(side=LEFT, padx=1, pady=1)
 create_tooltip(checkbutton_macro_loop, "Create random delay(s) for each Macro Loop hotkey(s) interaction.")
 
-frame_macro_loop_buttons = Frame(root)
+frame_macro_loop_buttons = Frame(label_frame_2)
 frame_macro_loop_buttons.pack(fill=X, padx=1, pady=1)
 
 button_macro_loop_start_stop = Button(frame_macro_loop_buttons, text="Start", width=10)
@@ -149,15 +155,18 @@ button_macro_loop_enable_disable.config(
     command=lambda: toolControl.enable_disable_macro_loop(button_macro_loop_enable_disable))
 create_tooltip(button_macro_loop_enable_disable, "Enable/Disable the Macro Loop.")
 
-label_buffer_hotkeys = Label(text="Buffer Hotkey(s):")
+label_frame_3 = LabelFrame(root)
+label_frame_3.pack(fill=X, padx=2, pady=2)
+
+label_buffer_hotkeys = Label(label_frame_3, text="Buffer Hotkey(s):")
 label_buffer_hotkeys.pack(fill=X, padx=1, pady=1)
 create_tooltip(label_buffer_hotkeys, "Hotkey(s) for each buff used (separate each hotkey(s) with commas).")
 
-entry_buffer_hotkeys = Entry(validate="none")
+entry_buffer_hotkeys = Entry(label_frame_3, validate="none")
 entry_buffer_hotkeys.pack(fill=X, padx=1, pady=1)
 create_tooltip(entry_buffer_hotkeys, "Hotkey(s) for each buff used (separate each hotkey(s) with commas).")
 
-frame_buffer_1 = Frame(root)
+frame_buffer_1 = Frame(label_frame_3)
 frame_buffer_1.pack(fill=X, padx=1, pady=1)
 
 label_buffs_hotbar = Label(frame_buffer_1, text="Hotbar:")
@@ -184,15 +193,15 @@ entry_buffer_delay = Entry(frame_buffer_1, width=6, validate="none")
 entry_buffer_delay.pack(side=LEFT, padx=1, pady=1)
 create_tooltip(entry_buffer_delay, "Delay to cast each buff.")
 
-label_buffer_shortcut = Label(text="Buffer Shortcut:")
+label_buffer_shortcut = Label(label_frame_3, text="Buffer Shortcut:")
 label_buffer_shortcut.pack(padx=1, pady=1)
 create_tooltip(label_buffer_shortcut, "Shortcut to activate the Buffer.")
 
-entry_buffer_shortcut = Entry(validate="none")
+entry_buffer_shortcut = Entry(label_frame_3, validate="none")
 entry_buffer_shortcut.pack(fill=X, padx=1, pady=1)
 create_tooltip(entry_buffer_shortcut, "Shortcut to activate the Buffer.")
 
-frame_buffer_4 = Frame(root)
+frame_buffer_4 = Frame(label_frame_3)
 frame_buffer_4.pack(fill=X, padx=1, pady=1)
 
 button_buffer_disable_enable = Button(frame_buffer_4, text="Enable", width=10)
@@ -207,7 +216,10 @@ button_buffer_start_stop.config(
                                                   button_macro_loop_enable_disable))
 create_tooltip(button_buffer_start_stop, "Start/Stop the Buffer")
 
-frame_buffer_2 = Frame(root)
+label_frame_4 = LabelFrame(root)
+label_frame_4.pack(fill=X, padx=2, pady=2)
+
+frame_buffer_2 = Frame(label_frame_4)
 frame_buffer_2.pack(fill=X, padx=1, pady=1)
 
 checkbutton_gt = Checkbutton(frame_buffer_2, text="Activate GT", variable=gt_checkbox_var, command=gt_checkbutton_state)

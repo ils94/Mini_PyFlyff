@@ -1,6 +1,6 @@
 import keyboard
 import globalVariables
-import browserControl
+import altController
 from tkinter import messagebox
 
 
@@ -11,10 +11,10 @@ def listener():
 
 def send_key(event):
     if event.name in globalVariables.alt_controller_hotkey_list:
-        browserControl.alt_control_send_keys(event.name)
+        altController.alt_control_send_keys(event.name)
 
 
-def set_mini_ftool_shortcut(key_sequence, function):
+def set_macro_loop_shortcut(key_sequence, function):
     try:
         if key_sequence:
             globalVariables.macro_loop_shortcut = keyboard.add_hotkey(key_sequence, function)
@@ -28,7 +28,7 @@ def set_mini_ftool_shortcut(key_sequence, function):
                                       "\n\n" + str(e))
 
 
-def buffer_shortcut(key_sequence, function):
+def set_buffer_shortcut(key_sequence, function):
     try:
         if key_sequence:
             globalVariables.buffer_shortcut = keyboard.add_hotkey(key_sequence, function)

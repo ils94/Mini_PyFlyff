@@ -4,7 +4,7 @@ macro_loop_enable_disabled = False
 
 buffer_enable_disabled = False
 
-alt_control_on = False
+alt_controller_on = False
 
 macro_loop_shortcut = None
 
