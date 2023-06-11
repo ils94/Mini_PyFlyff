@@ -40,7 +40,7 @@ Hovering your mouse above the text fields, buttons and labels, will show a small
 
 **Here is an image of an valid Mini PyFlyff Configuration:**
 
-![enter image description here](https://i.imgur.com/b76oizb.png)
+![enter image description here](https://i.imgur.com/8YfZDA1.png)
 
 # Disclaimer
 
