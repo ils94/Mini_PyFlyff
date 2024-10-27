@@ -1,51 +1,66 @@
-# Direct download link:
-[Newest version!](https://github.com/ils94/Mini_PyFlyff/releases/download/release/MiniPyFlyff.zip)
+Here's a refined version with clearer organization, more engaging language, and some small edits for readability:
 
-Last binary update: 05/23/2023
+---
 
-[Old Version (very outdated, but still functional)](https://github.com/ils94/Mini_PyFlyff/releases/download/old/MiniPyFlyff_old.zip)
+# Mini PyFlyff Download and Information
 
-# Mini PyFlyff
-A mini version of PyFlyff for Mozilla FireFox. This tool has all the old and loved features of PyFlyff but renewed and new ones!
+## 📥 Direct Download Link:
+[**Download the Newest Version!**](https://github.com/ils94/Mini_PyFlyff/releases/download/release/MiniPyFlyff.zip)  
+_Last binary update: May 23, 2023_
 
-# What do I need to use this tool?
-You need to install Mozilla Firefox web browser to be able to use this tool, download it from their official site: https://www.mozilla.org/
+[Download Old Version (outdated but still functional)](https://github.com/ils94/Mini_PyFlyff/releases/download/old/MiniPyFlyff_old.zip)
 
-Also, you must play with your alt through Mozilla Firefox, since this tool was made specifically to send keystrokes to Mozilla Firefox.
+---
 
-# Features (old and news)
+## 🌟 About Mini PyFlyff
 
-**"Alt Control" became now "Alt Controller".**
+**Mini PyFlyff** is a streamlined version of PyFlyff, built specifically for Mozilla Firefox. It combines classic features with exciting new functionalities to enhance your experience.
 
-**The best feature of PyFlyff is also here!**
+---
 
-You can setup hotkeys to control your Alt in the Alt Controller. Each hotkey pressed on your Main, will be pressed in your Alt Client as well. Very good if you want to combine your Alt's Heal with your Main's AoE in one single hotkey!
+## 🛠️ Requirements
 
-**"Mini Ftool" became now "Macro Loop".**
+- **Mozilla Firefox**: Download it [here](https://www.mozilla.org/).
+- **Use with your alt**: Mini PyFlyff is designed to work exclusively with Mozilla Firefox, specifically sending keystrokes through it.
 
-You can setup a hotkey spammer in the Macro Loop to spam one or a sequence of hotkeys. You can also setup delay(s) for each hotkey interaction.
+---
 
-You can check the "Random Delays" checkbox to generate random 
-delays between each hotkey press from the Macro Loop.
+## 💡 Features (New and Improved!)
 
-**Mini PyFlyff has a Buffer now!**
+### **Alt Controller**  
+The original **"Alt Control"** has evolved into **Alt Controller**!
 
-**A feature that everyone loves, is now part of this tool!**
+- Set up hotkeys in Alt Controller to control your alt character with ease. Actions taken on your main character will automatically reflect on your alt—perfect for combining your alt's Heal with your main's AoE!
 
-Configure the hotbar of your buffs and their hotkey. Activate the GT Buffer to always keep that GT UP!
+### **Macro Loop**  
+The feature formerly known as **"Mini Ftool"** is now **Macro Loop**!
 
-You can setup shortcuts for Macro Loop and Buffer, so you don't have to go to the tool and manually start/stop them!
+- Set up hotkey sequences to spam with customized delays.
+- Toggle "Random Delays" to add a unique touch between each key press for a more natural feel.
 
-Hovering your mouse above the text fields, buttons and labels, will show a small tooltip explaining what each feature does.
+### **Buffer**  
+The beloved **Buffer** feature is now here!
 
-**Here is an image of an valid Mini PyFlyff Configuration:**
+- Simply set your buff hotkeys, activate the GT Buffer, and it’ll keep your buffs up and running!
+- Easily toggle the Macro Loop and Buffer via shortcuts—no need to open the tool each time!
 
-![enter image description here](https://github.com/ils94/Mini_PyFlyff/blob/master/8YfZDA1.png?raw=true)
+✨ **Hover over text fields, buttons, and labels for quick tooltips that explain each feature.**
 
-# Disclaimer
+### Example Configuration  
+Here’s a valid example setup for Mini PyFlyff:
 
-Bots/Macros are forbbiden by the Devs. One for one macro are always valid since it still an one button for one action. Well, as you can see, Mini PyFlyff (as well as the old PyFlyff) are able to perform more than just one action per key and also have automatic features (hotkeys spammers) etc. Use this tool well! Do not fully afk with this tool, do not leave your RM on full auto with this tool! You may be caught off guard by a GM and receive a ban! You have been warned.
+![Mini PyFlyff Configuration Example](https://github.com/ils94/Mini_PyFlyff/blob/master/8YfZDA1.png?raw=true)
 
-# This tool is not for sale!
+---
 
-This tool is free and opensource, and will always be! I like to create little python automation projects because I learn a lot from them! IF SOMEONE IS TRYING TO SELL THIS TOOL, THIS PERSON IS A SCAMMER!
+## ⚠️ Disclaimer
+
+**Note**: Macros and bots are typically prohibited by game developers. Mini PyFlyff enables multi-action key bindings and includes automated features. Please use responsibly:
+- Avoid fully AFK gameplay.
+- Stay alert to avoid getting caught by a GM and risking a ban. **Use at your own discretion!**
+
+---
+
+## ❗ Not for Sale!
+
+**Mini PyFlyff is entirely free and open-source**—and it always will be! I enjoy creating these Python projects as learning experiences. **If anyone tries to sell this tool, they are scamming you!**
