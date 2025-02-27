@@ -1,7 +1,3 @@
-Here's a refined version with clearer organization, more engaging language, and some small edits for readability:
-
----
-
 # Mini PyFlyff Download and Information
 
 ## 📥 Direct Download Link:
