@@ -6,15 +6,10 @@ import os
 import saveConfigs
 import toolControl
 import miscs
-import bufferLoop
 
 
 def gt_checkbutton_state():
-    if gt_checkbox_var.get() == 1:
-        globalVariables.gt_buffer = True
-        miscs.multithreading(lambda: bufferLoop.gt_buffer())
-    else:
-        globalVariables.gt_buffer = False
+    toolControl.gt_checkbutton_state(gt_checkbox_var)
 
 
 def random_delay_checkbutton_state():
@@ -69,7 +64,7 @@ screen_height = root.winfo_screenheight()
 x = (screen_width / 2) - (window_width / 2)
 y = (screen_height / 2) - (window_height / 2)
 
-root.geometry(str(window_width)+"x"+str(window_height)+"+" + str(int(x)) + "+" + str(int(y)))
+root.geometry(str(window_width) + "x" + str(window_height) + "+" + str(int(x)) + "+" + str(int(y)))
 root.title("Mini PyFlyff")
 if os.path.isfile("icon/PyFlyff.ico"):
     root.iconbitmap("icon/PyFlyff.ico")
@@ -93,7 +88,8 @@ create_tooltip(label_alt_controller, "Hotkey(s) to control your Alt Client (sepa
 
 entry_alt_controller_hotkeys = Entry(label_frame_1, validate="none")
 entry_alt_controller_hotkeys.pack(fill=X, padx=1, pady=1)
-create_tooltip(entry_alt_controller_hotkeys, "Hotkey(s) to control your Alt Client (separate each hotkey(s) with commas).")
+create_tooltip(entry_alt_controller_hotkeys,
+               "Hotkey(s) to control your Alt Client (separate each hotkey(s) with commas).")
 
 frame_alt_controller_button = Frame(label_frame_1)
 frame_alt_controller_button.pack(fill=X, padx=1, pady=1)

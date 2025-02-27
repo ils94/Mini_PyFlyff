@@ -100,34 +100,36 @@ def buffer_loop(button1, button2, button3):
 def gt_buffer():
     while True:
 
-        if globalVariables.gt_buffer:
+        if not globalVariables.buffer_is_going:
 
-            countdown = globalVariables.gt_buffer_delay
+            if globalVariables.gt_buffer:
 
-            if countdown:
-                countdown = float(globalVariables.gt_buffer_delay)
+                countdown = globalVariables.gt_buffer_delay
 
-            default_countdown = 45
+                if countdown:
+                    countdown = float(globalVariables.gt_buffer_delay)
 
-            windowsAPI.windows_api(globalVariables.gt_buffer_hotkey)
+                default_countdown = 45
 
-            if globalVariables.gt_buffer_delay:
+                windowsAPI.windows_api(globalVariables.gt_buffer_hotkey)
 
-                while countdown:
-                    if globalVariables.gt_buffer_delay:
+                if globalVariables.gt_buffer_delay:
+
+                    while countdown:
+                        if globalVariables.gt_buffer_delay:
+                            if globalVariables.gt_buffer:
+                                countdown = countdown - 1
+                                time.sleep(1)
+                            else:
+                                break
+                else:
+                    while default_countdown:
                         if globalVariables.gt_buffer:
-                            countdown = countdown - 1
+                            default_countdown = default_countdown - 1
                             time.sleep(1)
                         else:
                             break
             else:
-                while default_countdown:
-                    if globalVariables.gt_buffer:
-                        default_countdown = default_countdown - 1
-                        time.sleep(1)
-                    else:
-                        break
-        else:
-            break
+                break
 
         time.sleep(0.5)
