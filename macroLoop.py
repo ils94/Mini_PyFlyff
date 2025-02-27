@@ -6,6 +6,7 @@ from tkinter import messagebox
 
 
 def macro_loop():
+    print("lol")
     while True:
         try:
             if globalVariables.macro_loop_on and globalVariables.macro_loop_enable_disabled:
@@ -17,6 +18,9 @@ def macro_loop():
                             time.sleep(random.uniform(0, float(timer)))
                         else:
                             time.sleep(float(timer))
+
+                    if not globalVariables.macro_loop_enable_disabled or not globalVariables.macro_loop_on:
+                        break
 
             if not globalVariables.macro_loop_enable_disabled or not globalVariables.macro_loop_on:
                 break
