@@ -5,10 +5,8 @@ Here's a refined version with clearer organization, more engaging language, and 
 # Mini PyFlyff Download and Information
 
 ## 📥 Direct Download Link:
-[**Download the Newest Version!**](https://github.com/ils94/Mini_PyFlyff/releases/download/release/MiniPyFlyff.zip)  
-_Last binary update: May 23, 2023_
-
-[Download Old Version (outdated but still functional)](https://github.com/ils94/Mini_PyFlyff/releases/download/old/MiniPyFlyff_old.zip)
+[**Download the Newest Version!**](https://github.com/ils94/Mini_PyFlyff/releases/download/release_v1/MiniPyFlyff.zip)  
+_Last binary update: Feb 27, 2025_
 
 ---
 
