@@ -44,7 +44,11 @@ The beloved **Buffer** feature is now here!
 ### Example Configuration  
 Here’s a valid example setup for Mini PyFlyff:
 
-![Mini PyFlyff Configuration Example](https://github.com/ils94/Mini_PyFlyff/blob/master/8YfZDA1.png?raw=true)
+![Mini PyFlyff Configuration Example](https://github.com/ils94/Mini_PyFlyff/blob/master/example.png?raw=true)
+
+### ❗ **Panic button** ❗
+
+If something goes wrong with the tool (crazy loops, zombie threads, bananas!), go to Menu → Panic! This should set all loops to false, slowly terminate any zombie threads, and everything should return to normal!
 
 ---
 
