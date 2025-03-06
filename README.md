@@ -1,8 +1,8 @@
 # Mini PyFlyff Download and Information
 
 ## 📥 Direct Download Link:
-[**Download the Newest Version!**](https://github.com/ils94/Mini_PyFlyff/releases/download/release_v1/MiniPyFlyff.zip)  
-_Last binary update: Feb 27, 2025_
+[**Download the Newest Version!**](https://github.com/ils94/Mini_PyFlyff/releases/download/release_v2/MiniPyFlyff.zip)  
+_Last binary update: Mar 06, 2025_
 
 ---
 
