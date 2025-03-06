@@ -6,7 +6,6 @@ from tkinter import messagebox
 
 
 def create_json_config(data_tuple):
-
     data = {
 
         "value1": data_tuple[0],
@@ -25,12 +24,10 @@ def create_json_config(data_tuple):
     }
 
     with open("config.json", "w") as json_file:
-
         json.dump(data, json_file)
 
 
 def open_json_config():
-
     try:
 
         file_path = "config.json"
@@ -67,7 +64,6 @@ def open_json_config():
 
 
 def save_key_configs(data_tuple):
-
     globalVariables.alt_controller_hotkey_list = data_tuple[0].split(",")
 
     globalVariables.macro_loop_hotkeys = data_tuple[1].split(",")

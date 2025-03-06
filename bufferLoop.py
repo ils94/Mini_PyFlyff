@@ -85,7 +85,6 @@ def gt_buffer():
                     countdown = globalVariables.gt_buffer_delay
 
                     if countdown:
-
                         countdown = float(globalVariables.gt_buffer_delay)
 
                     default_countdown = 45

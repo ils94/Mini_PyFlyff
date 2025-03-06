@@ -6,10 +6,22 @@ import os
 import saveConfigs
 import toolControl
 import miscs
+import panicButton
+
+
+def panic():
+    button_buffer_disable_enable["text"] = "Enable"
+
+    button_alt_controller_enable_disable["text"] = "Enable"
+
+    button_macro_loop_enable_disable["text"] = "Enable"
+
+    gt_checkbox_var.set(False)
+
+    panicButton.set_all_to_false()
 
 
 def load_config():
-
     entry_alt_controller_hotkeys.insert(END, saveConfigs.open_json_config()[0])
     entry_macro_loop_hotkey.insert(END, saveConfigs.open_json_config()[1])
     entry_macro_loop_delays.insert(END, saveConfigs.open_json_config()[2])
@@ -98,6 +110,7 @@ menu_bar = Menu(root)
 menu = Menu(menu_bar, tearoff=0)
 
 menu.add_command(label="Save Config", command=lambda: saveConfigs.save_key_configs(save_data()))
+menu.add_command(label="Panic!", command=panic)
 
 menu_bar.add_cascade(label="Menu", menu=menu)
 

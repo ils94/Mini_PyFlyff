@@ -7,6 +7,9 @@ import virtualKeys
 
 def windows_api(key):
     window = win32gui.FindWindow("MozillaWindowClass", None)
+
     win32api.SendMessage(window, win32con.WM_KEYDOWN, virtualKeys.vk_code.get(key), 0)
+
     time.sleep(0.1)
+
     win32api.SendMessage(window, win32con.WM_KEYUP, virtualKeys.vk_code.get(key), 0)

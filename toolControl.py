@@ -14,7 +14,6 @@ gt_buffer_lock = threading.Lock()
 
 
 def enable_disable_alt_control(button):
-
     if globalVariables.alt_controller_on:
 
         globalVariables.alt_controller_on = False
@@ -27,7 +26,6 @@ def enable_disable_alt_control(button):
 
 
 def start_stop_macro_loop():
-
     global macro_loop_running
 
     with macro_loop_lock:
@@ -49,7 +47,6 @@ def start_stop_macro_loop():
 
 
 def run_macro_loop():
-
     global macro_loop_running
 
     try:
@@ -66,7 +63,6 @@ def run_macro_loop():
 
 
 def enable_disable_macro_loop(button):
-
     if globalVariables.macro_loop_enable_disabled:
 
         globalVariables.macro_loop_enable_disabled = False
@@ -81,7 +77,6 @@ def enable_disable_macro_loop(button):
 
 
 def enable_disable_buffer(button):
-
     if globalVariables.buffer_enable_disabled:
 
         globalVariables.buffer_enable_disabled = False
@@ -96,7 +91,6 @@ def enable_disable_buffer(button):
 
 
 def start_stop_buffer():
-
     global buffer_loop_running
 
     with buffer_loop_lock:
@@ -108,7 +102,6 @@ def start_stop_buffer():
         elif not globalVariables.buffer_is_on and globalVariables.buffer_enable_disabled:
 
             if buffer_loop_running:
-
                 return
 
             globalVariables.buffer_is_on = True
@@ -119,7 +112,6 @@ def start_stop_buffer():
 
 
 def run_buffer_loop():
-
     global buffer_loop_running
 
     try:
@@ -143,7 +135,6 @@ def gt_checkbutton_state(gt_checkbox_var):
         if gt_checkbox_var.get() == 1:
 
             if gt_buffer_running:
-
                 print("GT Buffer is already running!")
 
                 return
