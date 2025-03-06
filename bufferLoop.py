@@ -1,77 +1,60 @@
 import time
 import windowsAPI
 import globalVariables
-import macroLoop
-import miscs
-
-macro_loop_on_check = None
-
-macro_loop_enable_disable_check = None
-
-gt_buffer_check = False
+from tkinter import messagebox
 
 buffer_countdown = None
 buffer_default_countdown = None
 
 
-def buffer_loop(button1, button2, button3):
-    global macro_loop_on_check
-    global gt_buffer_check
-    global macro_loop_enable_disable_check
+def buffer_loop():
     global buffer_countdown
     global buffer_default_countdown
 
-    if globalVariables.buffer_enable_disabled and globalVariables.buffer_is_on:
+    try:
 
-        macro_loop_on_check = globalVariables.macro_loop_on
+        if globalVariables.buffer_enable_disabled and globalVariables.buffer_is_on:
 
-        macro_loop_enable_disable_check = globalVariables.macro_loop_enable_disabled
+            globalVariables.buffer_is_going = True
 
-        gt_buffer_check = globalVariables.gt_buffer
+            for key in globalVariables.buffer_hotkeys:
 
-        for key in globalVariables.buffer_hotkeys:
+                if globalVariables.buffer_enable_disabled and globalVariables.buffer_is_on and globalVariables.buffer_is_going:
 
-            buffer_countdown = globalVariables.buffer_delay
+                    buffer_countdown = globalVariables.buffer_delay
 
-            if buffer_countdown:
-                buffer_countdown = float(globalVariables.buffer_delay)
+                    if buffer_countdown:
 
-            buffer_default_countdown = 3
+                        buffer_countdown = float(globalVariables.buffer_delay)
 
-            if globalVariables.buffer_enable_disabled and globalVariables.buffer_is_on:
+                    else:
 
-                if macro_loop_on_check:
-                    globalVariables.macro_loop_on = False
-                    button2["text"] = "Start"
+                        buffer_countdown = 3
 
-                if macro_loop_enable_disable_check:
-                    globalVariables.macro_loop_enable_disabled = False
-                    button3["text"] = "Enable"
+                    windowsAPI.windows_api(globalVariables.buffs_hotbar)
 
-                if gt_buffer_check:
-                    globalVariables.gt_buffer = False
+                    time.sleep(0.5)
 
-                windowsAPI.windows_api(globalVariables.buffs_hotbar)
-                time.sleep(0.5)
-                windowsAPI.windows_api(key)
+                    windowsAPI.windows_api(key)
 
-                if buffer_countdown:
                     while buffer_countdown:
-                        if globalVariables.buffer_delay:
-                            if globalVariables.buffer_enable_disabled and globalVariables.buffer_is_on:
-                                buffer_countdown = buffer_countdown - 1
-                                time.sleep(1)
-                            else:
-                                break
-                else:
-                    while buffer_default_countdown:
-                        if globalVariables.buffer_enable_disabled and globalVariables.buffer_is_on:
-                            buffer_default_countdown = buffer_default_countdown - 1
+
+                        if globalVariables.buffer_enable_disabled and globalVariables.buffer_is_on and globalVariables.buffer_is_going:
+
+                            buffer_countdown = buffer_countdown - 1
+
                             time.sleep(1)
+
                         else:
                             break
-            else:
-                break
+                else:
+                    globalVariables.buffer_is_going = False
+
+                    windowsAPI.windows_api(globalVariables.previous_hotbar)
+
+                    globalVariables.buffer_is_on = False
+
+                    break
 
         globalVariables.buffer_is_going = False
 
@@ -79,57 +62,68 @@ def buffer_loop(button1, button2, button3):
 
         globalVariables.buffer_is_on = False
 
-        button1["text"] = "Start"
+    except Exception as e:
 
-        if macro_loop_on_check and not globalVariables.macro_loop_on:
-            globalVariables.macro_loop_on = True
-            button2["text"] = "Stop"
+        globalVariables.buffer_is_going = False
 
-        if macro_loop_enable_disable_check and not globalVariables.macro_loop_enable_disabled:
-            globalVariables.macro_loop_enable_disabled = True
-            button3["text"] = "Disable"
+        windowsAPI.windows_api(globalVariables.previous_hotbar)
 
-            if gt_buffer_check and not globalVariables.gt_buffer:
-                globalVariables.gt_buffer = True
+        globalVariables.buffer_is_on = False
 
-            miscs.multithreading(lambda: gt_buffer())
-
-            miscs.multithreading(lambda: macroLoop.macro_loop())
+        messagebox.showerror("Error", f"Something wrong with GT Buffer!\n\n{str(e)}")
 
 
 def gt_buffer():
     while True:
 
-        if not globalVariables.buffer_is_going:
+        try:
 
-            if globalVariables.gt_buffer:
+            if not globalVariables.buffer_is_going:
 
-                countdown = globalVariables.gt_buffer_delay
+                if globalVariables.gt_buffer:
 
-                if countdown:
-                    countdown = float(globalVariables.gt_buffer_delay)
+                    countdown = globalVariables.gt_buffer_delay
 
-                default_countdown = 45
+                    if countdown:
 
-                windowsAPI.windows_api(globalVariables.gt_buffer_hotkey)
+                        countdown = float(globalVariables.gt_buffer_delay)
 
-                if globalVariables.gt_buffer_delay:
+                    default_countdown = 45
 
-                    while countdown:
-                        if globalVariables.gt_buffer_delay:
+                    windowsAPI.windows_api(globalVariables.gt_buffer_hotkey)
+
+                    if globalVariables.gt_buffer_delay:
+
+                        while countdown:
+
+                            if globalVariables.gt_buffer_delay:
+
+                                if globalVariables.gt_buffer:
+
+                                    countdown = countdown - 1
+
+                                    time.sleep(1)
+                                else:
+                                    break
+                    else:
+                        while default_countdown:
+
                             if globalVariables.gt_buffer:
-                                countdown = countdown - 1
+
+                                default_countdown = default_countdown - 1
+
                                 time.sleep(1)
                             else:
                                 break
                 else:
-                    while default_countdown:
-                        if globalVariables.gt_buffer:
-                            default_countdown = default_countdown - 1
-                            time.sleep(1)
-                        else:
-                            break
-            else:
-                break
+                    break
+
+        except Exception as e:
+
+            messagebox.showerror("Error", f"Something wrong with GT Buffer!\n\n{str(e)}")
+
+            time.sleep(5)
+
+            continue
 
         time.sleep(0.5)
